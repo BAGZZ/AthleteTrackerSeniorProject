@@ -1,0 +1,1 @@
+stage.getIcons().add(new Image("asuIcon.png"));

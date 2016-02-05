@@ -1,0 +1,11 @@
+public void handlerEnterPressed(KeyEvent e){
+		if(e.getCode() == KeyCode.ENTER){
+			searchTableView.getItems().setAll(atdb.searchDatabase("", "", "", "", "", "", "", new  java.sql.Date(System.currentTimeMillis()), new  java.sql.Date(System.currentTimeMillis()), "", "", ""));
+		}
+	}
+
+//put after searchButtonAction
+//update athletracker fxml
+
+//in order to add a new injury type
+AthleteTrackerDatabase.addInjuryType(String bodyPart, String injuryType)
