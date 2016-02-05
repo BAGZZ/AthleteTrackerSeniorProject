@@ -26,7 +26,11 @@ import edu.adams.backendboys.AthleteTrackerDatabase;
 import edu.adams.backendboys.Injury;
 import edu.adams.backendboys.InjuryProgress;
 import edu.adams.backendboys.PhysicianVisit;
-
+/**
+ * controls all functionality within the edit injury window
+ * @author ZBagby
+ *
+ */
 public class EditInjuryWindowController implements Initializable {
 	
 	AthleteTrackerDatabase atdb = new AthleteTrackerDatabase();
@@ -36,9 +40,11 @@ public class EditInjuryWindowController implements Initializable {
 	editInjuryBodyPartLabel1,
 	editInjuryInjuryTypeLabel1,
 	editInjuryInjuryDateLabel1;
+	
 	@FXML
 	private DatePicker editInjuryNewProgressNotesDatePicker,
 		editInjuryNewPhysicianNotesDatePicker;
+	
 	@FXML 
 	private TextArea editInjurySNotesTextArea,
 		editInjuryONotesTextArea,
@@ -46,14 +52,18 @@ public class EditInjuryWindowController implements Initializable {
 		editInjuryPNotesTextArea,
 		editInjuryNewProgressNotesTextArea,
 		editInjuryNewPhysicianNotesTextArea;
+	
 	@FXML
 	private CheckBox editInjuryActiveInjuryCheckBox;
+	
 	@FXML
 	private Button makeChangesButton,
 		editInjuryNewProgressNotesAddNoteButton,
 		editInjuryNewPhysicianNotesAddNoteButton;
+	
 	@FXML 
 	private TableView<InjuryProgress> editInjuryProgressNotesTableView;
+	
 	@FXML
 	private TableView<PhysicianVisit>editInjuryPhysicianNotesTableView;
 
@@ -104,9 +114,12 @@ public class EditInjuryWindowController implements Initializable {
 		
 		columnPhysicianDateInjury.setText("Date");
 		columnPhyscicianNoteInjury.setText("Note");
-		
-		
 	}	
+	
+	/**
+	 * Calls all current injury information and adds it into the window.
+	 * @param currentAthlete current athlete
+	 */
 	public void setInformation(Athlete currentAthlete) {
 		this.currentAthlete = currentAthlete;
 		this.currentInjury =currentAthlete.getCurrentInjury();
@@ -162,10 +175,19 @@ public class EditInjuryWindowController implements Initializable {
 		
 	}
 	
+	/**
+	 * Makes changes and adds them to the database
+	 * @param me mouse event 
+	 */
 	public void makeChangesButtonPressed(MouseEvent me){
 		
 	}
 	
+	/**
+	 * Takes information from the text box and date picker to create a new progress note
+	 * then adds that note to the current athlete in the database.
+	 * @param me mouse event
+	 */
 	public void addNoteProgressButton(MouseEvent me){
 			LocalDate localDate = editInjuryNewProgressNotesDatePicker.getValue();
 			Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
@@ -175,6 +197,11 @@ public class EditInjuryWindowController implements Initializable {
 			atdb.addProgressNote(currentInjury, progressNote);
 	}
 	
+	/**
+	 * Takes information from the text box and date picker to create a new physician note
+	 * then adds that note to the current athlete in the database.
+	 * @param me mouse event
+	 */
 	public void addNotePhysicianButton(MouseEvent me){
 
 			LocalDate localDate = editInjuryNewPhysicianNotesDatePicker.getValue();

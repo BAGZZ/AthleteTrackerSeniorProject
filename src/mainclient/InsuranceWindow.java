@@ -8,9 +8,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-
+/**
+ * This class creates the Insurance window.
+ * @author ZBagby
+ *
+ */
 public class InsuranceWindow extends Window {
-	
+	/**
+	 * constructor
+	 * @param currentAthlete current athlete
+	 */
 	public InsuranceWindow(Athlete currentAthlete){
 		Stage stg = new Stage();
 		stg.setResizable(false);

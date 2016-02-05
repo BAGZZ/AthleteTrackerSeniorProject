@@ -11,7 +11,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
+/**
+ * This class provides all of the functionality to the insurance window.
+ * @author ZBagby
+ *
+ */
 public class InsuranceWindowController implements Initializable {
 	
 	private Athlete currentAthlete = null;
@@ -53,6 +57,10 @@ public class InsuranceWindowController implements Initializable {
 
 	}
 	
+	/**
+	 * Fills in all insurance information from current athlete.
+	 * @param currentAthlete current athlete
+	 */
 	public void setAthlete(Athlete currentAthlete){
 		this.currentAthlete = currentAthlete;
 		athleteNameInsuranceInformationLabel1.setText(currentAthlete.getFirstName()+" "+currentAthlete.getMiddleInitial()+" "+currentAthlete.getLastName());
@@ -85,6 +93,11 @@ public class InsuranceWindowController implements Initializable {
 		physicianPhoneInsuranceInformationLabel1.setText(currentAthlete.getInsuranceInfo().getPhysicianPhone());
 	
 	}
+	
+	/**
+	 * Toggle button allowing text to be editable and saves and makes changes.
+	 * @param ae action event
+	 */
 	public void insuranceInformationEditButtonAction(ActionEvent ae){
 			ae.consume();
 		if(insuranceInformationEditButton.getText().startsWith("Edit"))
@@ -253,6 +266,10 @@ public class InsuranceWindowController implements Initializable {
 			}
 		}
 
+	/**
+	 * cancels all changes made.
+	 * @param ae action event
+	 */
 	public void insuranceInformationCancelButtonAction(ActionEvent ae)
 	{
 		ae.consume();

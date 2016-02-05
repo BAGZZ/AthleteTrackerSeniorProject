@@ -6,7 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.*;
-
+/**
+ * This class is where the application begins by providing a main method to launch the main frame.
+ * @author ZBagby
+ *
+ */
 public class MainFrame extends Application {
 	private Stage stage;
 	
@@ -27,6 +31,10 @@ public class MainFrame extends Application {
 		this.stage.show();
 	}
 	
+	/**
+	 * Main method
+	 * @param args args
+	 */
 	public static void main(String[] args)
 	{
 		launch(args);

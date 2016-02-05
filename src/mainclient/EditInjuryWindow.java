@@ -9,9 +9,16 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import edu.adams.backendboys.Athlete;
 import edu.adams.backendboys.Injury;
-
+/**
+ * This class creates the Edit Injury Window
+ * @author ZBagby
+ *
+ */
 public class EditInjuryWindow extends Window {
-
+	/**
+	 * constructor current athlete
+	 * @param currentAthlete current athlete
+	 */
 	public EditInjuryWindow(Athlete currentAthlete){
 		Stage stg = new Stage();
 		stg.setResizable(false);

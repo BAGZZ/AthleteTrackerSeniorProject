@@ -7,9 +7,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-
+	/**
+	 * This class creates the Add injury window
+	 * @author ZBagby
+	 *
+	 */
 	public class AddInjuryWindow extends Window {
-	
+		/**
+		 * constructor
+		 * @param currentAthlete current athlete 
+		 */
 		public AddInjuryWindow(Athlete currentAthlete){
 			Stage stg = new Stage();
 			stg.setResizable(false);

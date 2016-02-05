@@ -26,7 +26,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
+/**
+ * This class controls all functionality within the add injury window.
+ * @author ZBagby
+ *
+ */
 public class AddInjuryWindowController implements Initializable{
 
 	@FXML
@@ -64,6 +68,11 @@ public class AddInjuryWindowController implements Initializable{
 		addInjuryInjuryTypeComboBox.getItems().setAll("Select Body Part");
 	}
 	
+	/**
+	 * Injury type needs a body part before it can be filled. This fills the injury type 
+	 * combobox once a body part is selected
+	 * @param me mouse event
+	 */
 	public void injuryTypeAction(MouseEvent me){
 		if(addInjuryBodyPartComboBox.getValue() != null){
 			me.consume();
@@ -76,6 +85,12 @@ public class AddInjuryWindowController implements Initializable{
 		}
 	}
 	
+	/**
+	 * creates a new injury using information user has added and adds it 
+	 * to the database for the current athlete. It will also close this 
+	 * window when pressed.
+	 * @param me action event
+	 */
 	public void addInjuryButtonAction(ActionEvent me){
 		LocalDate localDate1 = addInjuryInjuryDateDatePicker.getValue();
 		Instant instant1 = Instant.from(localDate1.atStartOfDay(ZoneId.systemDefault()));

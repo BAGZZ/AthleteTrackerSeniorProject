@@ -33,6 +33,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
+/**
+ * This class provides all of the functionality behind the main 
+ * screen which includes the search tab, current athlete tab, and 
+ * the add athlete tab.
+ * @author ZBagby
+ *
+ */
 public class MainSceneController implements Initializable {
 	private final long REFRESHTIMEOUT = 1000/2;
 	AthleteTrackerDatabase atdb = new AthleteTrackerDatabase();
@@ -44,6 +51,7 @@ public class MainSceneController implements Initializable {
 	
 	@FXML
 	private TabPane tabPane;
+
 	@FXML
 	private ListView<String> sportsAddAthleteListView;
 	@FXML
@@ -65,9 +73,11 @@ public class MainSceneController implements Initializable {
 		displayInsuranceError,
 		addInjuryError,
 		editAthleteError;
+
 	@FXML
 	private MenuButton bodyPartMenuButton;
 	@FXML
+	
 	private DatePicker dobAddAthletedatePicker,
 		effectiveDateDatePicker,
 		expirationDateDatePicker,
@@ -75,10 +85,12 @@ public class MainSceneController implements Initializable {
 		endDateDatePicker;
 	@FXML
 	private Tab selectedAthleteTab;
+
 	@FXML
 	private Button editAthleteButton, 
 		editAthleteCancelButton,
 		addAthleteButton;
+	
 	@FXML
 	//contact information
 	private TextField phoneContactText,  
@@ -130,20 +142,20 @@ public class MainSceneController implements Initializable {
 		coPayAddAthleteText,
 		limitAddAthleteText,
 		deductableAddAthleteText;
-		
-		
+			
 	@FXML
 	private CheckBox activeCheckBox,
 	activeAddAthleteCheckBox;
 	
 	@FXML
 	private TableView<Athlete> searchTableView;
+
 	@FXML
 	private TableView<Injury> injuriesTableView;
 	
 	@FXML
 	private ImageView searchImageView;
-	
+
 	//Columns for Injury Table
 	TextColumn<Injury> columnInjury;
 	TextColumn<Injury> columnDate;
@@ -163,11 +175,12 @@ public class MainSceneController implements Initializable {
 	
 	private long previous=0;
 	
-	@Override
+	/**
+	 * Generates all of the visual elements before gui is shown
+	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		//do stuff here before viewing
-		
 		//add information to specific column search table
 		columnFirstName = new TextColumn<Athlete>("firstName");
 		columnLastName = new TextColumn<Athlete>("lastName");
@@ -215,8 +228,7 @@ public class MainSceneController implements Initializable {
 		searchTableView.getColumns().add(columnAthleteActive);
 		searchTableView.getColumns().add(columnInjuryActive);
 		
-		
-		//filling in search combo boxssss
+		//filling in search combo boxes
 		eligibilityAddAthleteComboBox.getItems().add("Freshman");
 		eligibilityAddAthleteComboBox.getItems().add("Sophomore");
 		eligibilityAddAthleteComboBox.getItems().add("Junior");
@@ -263,10 +275,14 @@ public class MainSceneController implements Initializable {
 		sportsAddAthleteListView.getItems().setAll(sports);
 		sportsAddAthleteListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
-		searchImageView.setImage(new Image(getClass().getResourceAsStream("asuIcon.png")));
-		
+		searchImageView.setImage(new Image(getClass().getResourceAsStream("asuIcon.png")));	
 	}
 	
+	/**
+	 * Toggles ability to edit current viewed information about athlete. 
+	 * Changes to "save athlete" which if pressed saves all changes.
+	 * @param ae action event
+	 */
 	public void editAthleteButtonAction(ActionEvent ae)
 	{
 		ae.consume();
@@ -383,7 +399,10 @@ public class MainSceneController implements Initializable {
 			}
 		}
 	}
-	
+	/**
+	 * Cancels so all changes made are not saved and restores text fields to original state.
+	 * @param ae action event
+	 */
 	public void editAthleteCancelButtonAction(ActionEvent ae)
 	{
 		ae.consume();
@@ -454,6 +473,10 @@ public class MainSceneController implements Initializable {
 		eligibilityAthleteText.getStyleClass().add("selectedAthlete");
 	}
 	
+	/**
+	 * Needs value to be selected from body part before working. Selects injury type to search for.
+	 * @param ae action event
+	 */
 	public void InjuryTypeComboBoxAction(MouseEvent ae){
 		if(bodyPartComboBox.getValue() != null){
 			ae.consume();
@@ -467,6 +490,10 @@ public class MainSceneController implements Initializable {
 
 	}
 	
+	/**
+	 * Uses all of the information selected from the user to find all athletes that fit those criteria.
+	 * @param ae action event
+	 */
 	public void searchButtonAction(ActionEvent ae){
 		ae.consume();
 		//get athletes from database
@@ -493,11 +520,20 @@ public class MainSceneController implements Initializable {
 		
 		
 		
-		searchTableView.getItems().setAll(atdb.searchDatabase(atdb.sanitize(firstNameSearchText.getText()), atdb.sanitize(middleInitialSearchText.getText()), atdb.sanitize(lastNameSearchText.getText()),atdb.sanitize(sportComboBox.getValue()), atdb.sanitize(bodyPartComboBox.getValue()), atdb.sanitize(injuryTypeComboBox.getValue()), atdb.sanitize(activeInjuryComboBox.getValue()), date1,date2, atdb.sanitize(studentNumberSearchText.getText()), atdb.sanitize(seasonComboBox.getValue()), atdb.sanitize(genderComboBox.getValue())));
+		searchTableView.getItems().setAll(atdb.searchDatabase(atdb.sanitize(firstNameSearchText.getText()), 
+				atdb.sanitize(middleInitialSearchText.getText()), atdb.sanitize(lastNameSearchText.getText()),
+				atdb.sanitize(sportComboBox.getValue()), atdb.sanitize(bodyPartComboBox.getValue()), 
+				atdb.sanitize(injuryTypeComboBox.getValue()), atdb.sanitize(activeInjuryComboBox.getValue()), 
+				date1,date2, atdb.sanitize(studentNumberSearchText.getText()), atdb.sanitize(seasonComboBox.getValue()), 
+				atdb.sanitize(genderComboBox.getValue())));
 	
 
 	}
 	
+	/**
+	 * Allows user to press enter instead of clicking "search" button
+	 * @param e keypressed event
+	 */
 	public void handlerEnterPressed(KeyEvent e){
 		if(e.getCode() == KeyCode.ENTER){
 			e.consume();
@@ -522,14 +558,20 @@ public class MainSceneController implements Initializable {
 			else{
 				date2=new Date();
 			}
-			
-			
-			
-			searchTableView.getItems().setAll(atdb.searchDatabase(atdb.sanitize(firstNameSearchText.getText()), atdb.sanitize(middleInitialSearchText.getText()), atdb.sanitize(lastNameSearchText.getText()),atdb.sanitize(sportComboBox.getValue()), atdb.sanitize(bodyPartComboBox.getValue()), atdb.sanitize(injuryTypeComboBox.getValue()), atdb.sanitize(activeInjuryComboBox.getValue()), date1,date2, atdb.sanitize(studentNumberSearchText.getText()), atdb.sanitize(seasonComboBox.getValue()), atdb.sanitize(genderComboBox.getValue())));
-			
+			searchTableView.getItems().setAll(atdb.searchDatabase(atdb.sanitize(firstNameSearchText.getText()),
+					atdb.sanitize(middleInitialSearchText.getText()), atdb.sanitize(lastNameSearchText.getText()),
+					atdb.sanitize(sportComboBox.getValue()), atdb.sanitize(bodyPartComboBox.getValue()), 
+					atdb.sanitize(injuryTypeComboBox.getValue()), atdb.sanitize(activeInjuryComboBox.getValue()), 
+					date1,date2, atdb.sanitize(studentNumberSearchText.getText()), atdb.sanitize(seasonComboBox.getValue()), 
+					atdb.sanitize(genderComboBox.getValue())));
 		}
 	}
 	
+	/**
+	 * When Generate Report button is pressed a .csv file is created on user's desktop and a message shows next to the
+	 * button letting the user know all information that fits the current search criteria was sent to the desktop.
+	 * @param ae action event
+	 */
 	public void generateReportButtonAction(ActionEvent ae){
 		ae.consume();
 		Date date1;
@@ -550,7 +592,12 @@ public class MainSceneController implements Initializable {
 		else{
 			date2=new Date();
 		}
-		atdb.searchDatabase(atdb.sanitize(firstNameSearchText.getText()), atdb.sanitize(middleInitialSearchText.getText()), atdb.sanitize(lastNameSearchText.getText()),atdb.sanitize(sportComboBox.getValue()), atdb.sanitize(bodyPartComboBox.getValue()), atdb.sanitize(injuryTypeComboBox.getValue()), atdb.sanitize(activeInjuryComboBox.getValue()), date1,date2, atdb.sanitize(studentNumberSearchText.getText()), atdb.sanitize(seasonComboBox.getValue()), atdb.sanitize(genderComboBox.getValue()));
+		atdb.searchDatabase(atdb.sanitize(firstNameSearchText.getText()), atdb.sanitize(middleInitialSearchText.getText()), 
+				atdb.sanitize(lastNameSearchText.getText()),atdb.sanitize(sportComboBox.getValue()), 
+				atdb.sanitize(bodyPartComboBox.getValue()), atdb.sanitize(injuryTypeComboBox.getValue()), 
+				atdb.sanitize(activeInjuryComboBox.getValue()), date1,date2, atdb.sanitize(studentNumberSearchText.getText()), 
+				atdb.sanitize(seasonComboBox.getValue()), atdb.sanitize(genderComboBox.getValue()));
+		
 		atdb.generateReport();
 		
 		generatedLabel.setText("Report has been generated\nand file sent to your desktop.");
@@ -564,6 +611,11 @@ public class MainSceneController implements Initializable {
 		
 	}
 	
+	/**
+	 * When a user double clicks on a specific athlete in the search table viewer that athlete is made the current athlete
+	 * and displays the athletes information on the athlete tab automatically.
+	 * @param me mouse event
+	 */
 	public void searchTableViewMousePressed(MouseEvent me){
 		 if (me.getClickCount() >= 2) {
 	        currentAthlete = (searchTableView.getSelectionModel().getSelectedItem()); 
@@ -635,6 +687,11 @@ public class MainSceneController implements Initializable {
 		 }
 	}
 	
+	/**
+	 * If an injury is double clicked in the injury table viewer then a new window will appear with information about 
+	 * the current athlete's selected injury.
+	 * @param ml mouse event
+	 */
 	public void injuriesTableViewMousePressed(MouseEvent ml){
 		 if (ml.getClickCount() >= 2) { 
 			
@@ -644,8 +701,11 @@ public class MainSceneController implements Initializable {
 		 }
 	}
 	
-	
-	
+	/**
+	 * When display insurance button is pressed a new window appears with all of the current athlete's insurance 
+	 * information. If there is no current athlete selected an error message will appear.
+	 * @param ae action event 
+	 */
 	public void displayInsuranceButtonAction(ActionEvent ae)
 	{
 		ae.consume();
@@ -664,6 +724,11 @@ public class MainSceneController implements Initializable {
 		}
 	}	
 	
+	/**
+	 * When add athlete button is pressed a new athlete is created using all of the filled in information and added to
+	 * the database.
+	 * @param ae action event
+	 */
 	public void addAthleteButtonAction(ActionEvent ae)
 	{
 		ae.consume();
@@ -705,6 +770,7 @@ public class MainSceneController implements Initializable {
 		
 		EmergencyContact contacts = new EmergencyContact(ecNameAddAthleteText1.getText(), 
 			ecPhoneAddAthleteText1.getText(), ecNameAddAthleteText2.getText(), ecPhoneAddAthleteText2.getText());
+		
 		InsuranceInformation insuranceInformation = new InsuranceInformation(athleteSSNAddAthleteText.getText(), 
 			insuranceNameAddAthleteText.getText(), insurancePhoneAddAthleteText.getText(), IDAddAthleteText.getText(), 
 			groupNumberAddAthleteText.getText(), companyAddressAddAthleteText.getText(), new java.sql.Date(dateeff.getTime()), 
@@ -713,15 +779,21 @@ public class MainSceneController implements Initializable {
 			Integer.parseInt(limitAddAthleteText.getText()), Integer.parseInt(deductableAddAthleteText.getText()),
 			Integer.parseInt(coPayAddAthleteText.getText()), referral,
 			primaryPhysicianAddAthleteText.getText(), physicianPhoneAddAthleteText.getText());
+		
 		Athlete athlete = new Athlete(firstAddAthleteText.getText(), miAddAthleteText.getText().charAt(0), 
 			lastAddAthleteText.getText(),new java.sql.Date(datedob.getTime()), cellAddAthleteText.getText(), 
 			Integer.parseInt(idAddAthleteText.getText()), genderAddAthleteComboBox.getValue().charAt(0), ""+yearAddAthleteComboBox.getValue(), 
 			eligibilityAddAthleteComboBox.getValue(), activeAddAthleteCheckBox.isSelected(), allergiesAddAthleteText.getText(), 
 			medicationsAddAthletText.getText(),sports , new ArrayList<Injury>(), contacts, insuranceInformation);
-			atdb.addAthlete(athlete);
+			
+		atdb.addAthlete(athlete);
 		
 	}
 	
+	/**
+	 * When add injury button is pressed a new window will appear which requires all information needed for the injury.
+	 * @param ae action event
+	 */
 	public void addInjuryButtonAction(ActionEvent ae)
 	{
 		if(currentAthlete == null){
@@ -738,6 +810,11 @@ public class MainSceneController implements Initializable {
 			new AddInjuryWindow(currentAthlete);
 		}
 	}
+	
+	/**
+	 * 
+	 * @return current athlete
+	 */
 	public Athlete getCurrentAthlete(){
 		return currentAthlete;
 	}
