@@ -7,10 +7,13 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import com.panemu.tiwulfx.table.CheckBoxColumn;
 import com.panemu.tiwulfx.table.TextColumn;
 
 import javafx.application.Preloader.ProgressNotification;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -45,6 +48,7 @@ public class EditInjuryWindowController implements Initializable {
 	private DatePicker editInjuryNewProgressNotesDatePicker,
 		editInjuryNewPhysicianNotesDatePicker;
 	
+
 	@FXML 
 	private TextArea editInjurySNotesTextArea,
 		editInjuryONotesTextArea,
@@ -52,6 +56,7 @@ public class EditInjuryWindowController implements Initializable {
 		editInjuryPNotesTextArea,
 		editInjuryNewProgressNotesTextArea,
 		editInjuryNewPhysicianNotesTextArea;
+
 	
 	@FXML
 	private CheckBox editInjuryActiveInjuryCheckBox;
@@ -80,7 +85,7 @@ public class EditInjuryWindowController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		editInjuryAthleteNameLabel.setText("");
-		editInjuryBodyPartLabel1.setText("Body Part");
+		editInjuryBodyPartLabel1.setText("");
 		editInjuryInjuryTypeLabel1.setText("");
 		editInjuryInjuryDateLabel1.setText("");
 		editInjuryActiveInjuryCheckBox.setSelected(true);
@@ -125,7 +130,7 @@ public class EditInjuryWindowController implements Initializable {
 		this.currentInjury =currentAthlete.getCurrentInjury();
 		
 		editInjuryAthleteNameLabel.setText(currentAthlete.getFirstName()+" "+currentAthlete.getLastName());
-		//editInjuryBodyPartLabel1.setText(atdb.getBodyPart(currentAthlete.getCurrentInjury().getBodyPartID()));
+		editInjuryBodyPartLabel1.setText(atdb.getBodyPartByID(currentAthlete.getCurrentInjury().getBodyPartID()));
 		editInjuryInjuryTypeLabel1.setText(currentAthlete.getCurrentInjury().getInjuryType());
 		editInjuryInjuryDateLabel1.setText(currentAthlete.getCurrentInjury().getInjuryDate().toString());
 		editInjuryActiveInjuryCheckBox.setSelected(currentInjury.getActive());
@@ -188,28 +193,33 @@ public class EditInjuryWindowController implements Initializable {
 	 * then adds that note to the current athlete in the database.
 	 * @param me mouse event
 	 */
-	public void addNoteProgressButton(MouseEvent me){
+	public void addNoteProgressButton(ActionEvent me){
 			LocalDate localDate = editInjuryNewProgressNotesDatePicker.getValue();
 			Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
 			Date date = Date.from(instant);
 			InjuryProgress progressNote = new InjuryProgress(new java.sql.Date(date.getTime()), editInjuryNewProgressNotesTextArea.getText());
 			System.out.println(progressNote);
 			atdb.addProgressNote(currentInjury, progressNote);
+			JOptionPane.showMessageDialog(null, "Progress Note Added", "Added", JOptionPane.OK_OPTION);
+			editInjuryNewProgressNotesDatePicker.setValue(null);
+			editInjuryNewProgressNotesTextArea.setText(null);
 	}
-	
+	//TODO doesn't work
 	/**
 	 * Takes information from the text box and date picker to create a new physician note
 	 * then adds that note to the current athlete in the database.
 	 * @param me mouse event
 	 */
-	public void addNotePhysicianButton(MouseEvent me){
-
+	public void addNotePhysicianButton(ActionEvent me){
 			LocalDate localDate = editInjuryNewPhysicianNotesDatePicker.getValue();
 			Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
 			Date date = Date.from(instant);
 			PhysicianVisit progressNote = new  PhysicianVisit(new java.sql.Date(date.getTime()), editInjuryNewPhysicianNotesTextArea.getText());
 			System.out.println(progressNote);
+			System.out.println(progressNote.getDate());
+			System.out.println(progressNote.getNote());
 			atdb.addPhysicianVisit(currentInjury, progressNote);
+			JOptionPane.showMessageDialog(null, "Progress Note Added", "Added", JOptionPane.OK_OPTION);
 		
 	}
 

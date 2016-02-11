@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import com.panemu.tiwulfx.table.CheckBoxColumn;
 import com.panemu.tiwulfx.table.DateColumn;
 import com.panemu.tiwulfx.table.TextColumn;
@@ -26,6 +28,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -84,12 +87,14 @@ public class MainSceneController implements Initializable {
 		startDateDatePicker,
 		endDateDatePicker;
 	@FXML
-	private Tab selectedAthleteTab;
+	private Tab selectedAthleteTab,
+	searchTab;
 
 	@FXML
 	private Button editAthleteButton, 
 		editAthleteCancelButton,
-		addAthleteButton;
+		addAthleteButton, 
+		refreshButton;
 	
 	@FXML
 	//contact information
@@ -787,6 +792,13 @@ public class MainSceneController implements Initializable {
 			medicationsAddAthletText.getText(),sports , new ArrayList<Injury>(), contacts, insuranceInformation);
 			
 		atdb.addAthlete(athlete);
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Athlete Added");
+		alert.setHeaderText(null);
+		alert.setContentText("Athlete Added Successfully");
+
+		alert.showAndWait();
+		tabPane.getSelectionModel().select(searchTab);
 		
 	}
 	

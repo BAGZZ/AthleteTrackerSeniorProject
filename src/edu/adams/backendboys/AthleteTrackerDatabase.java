@@ -13,6 +13,12 @@ import java.util.Date;
  * add editEmergencyContact
  * add add/remove Coach
  * add GenerateReport()
+ * ignoreCase
+ */
+/**
+ * 
+ * @author ZBagby
+ *
  */
 public class AthleteTrackerDatabase {
 	private Database database;
@@ -211,6 +217,7 @@ public class AthleteTrackerDatabase {
 		tempStorage= database.select("INJURIES", idData);
 		ArrayList<ArrayList<String>> innerTempStorage = new ArrayList<ArrayList<String>>();
 		int injuryID;
+		int bodyPartID;
 		String injuryType;
 		java.sql.Date injuryDate;
 		String season; 
@@ -225,6 +232,8 @@ public class AthleteTrackerDatabase {
 			injuryID = Integer.parseInt(injury.get(0));
 			injuryType = getInjuryType(Integer.parseInt(injury.get(2)));
 			injuryDate=java.sql.Date.valueOf(injury.get(3));
+			//TODO FIX THIS SHIT, LIKE MEOW
+			bodyPartID = getBodyPartIDByInjuryType(injuryType);
 			activeInjury=true;
 			if(injury.get(4).contains("0")){
 				activeInjury=false;
@@ -267,7 +276,7 @@ public class AthleteTrackerDatabase {
 				injuryProgressNotes.add(new InjuryProgress(visitDate, visitNote));
 			}
 			
-			injuries.add(new Injury(injuryID, injuryType, injuryDate, activeInjury, season, soapNotes, physicianVisits, injuryProgressNotes));
+			injuries.add(new Injury(bodyPartID, injuryID, injuryType, injuryDate, activeInjury, season, soapNotes, physicianVisits, injuryProgressNotes));
 		}
 		
 		//database search to get contacts from db
@@ -331,6 +340,12 @@ public class AthleteTrackerDatabase {
 		return new Athlete(firstName, middleInitial, lastName, dateOfBirth, cellNumber, studentID, gender, yearAtUniversity, eligibility, active, allergies, medications, sports, injuries, contacts, insuranceInfo);
 	}
 	
+	private int getBodyPartIDByInjuryType(String injuryType) {
+		String[] data = {"INJURYTYPE='"+injuryType+"'"};
+		ArrayList<ArrayList<String>> temp = database.select("INJURYTYPE", data);
+		return Integer.parseInt(temp.get(0).get(1));
+	}
+
 	private String getInjuryType(int injuryTypeID) {
 		String[] data = {"INJURYTYPEID="+injuryTypeID};
 		return database.select("INJURYTYPE", data).get(0).get(2);
@@ -369,7 +384,7 @@ public class AthleteTrackerDatabase {
 		int injuryID=Integer.parseInt(temp.get(0).get(0));
 		String[] soapData = new String[7];
 		for(SOAPNotes soap: injury.getSoapNotes()){
-			soapData[0]="(INJURYID,SUBJECTIVE,OBJECTIVE,ANALYSIS,PLAN,DATE)";
+			soapData[0]="(INJURYID,SUBJECTIVE,OBJECTIVE,ASSESSMENT,PLAN,DATE)";
 			soapData[1]=""+injuryID+",";
 			soapData[2]="'"+soap.getSubjective()+"',";
 			soapData[3]="'"+soap.getObjective()+"',";
@@ -405,7 +420,8 @@ public class AthleteTrackerDatabase {
 		return database.insert(table, data);
 	}
 
-	private ArrayList<Integer> parseAthleteInfoAndSearch(String firstName,String middleInitial, String lastName, String studentID, String gender){
+	private ArrayList<Integer> parseAthleteInfoAndSearch(String firstName,String middleInitial, 
+														String lastName, String studentID, String gender){
 		ArrayList<Integer> ids=new ArrayList<Integer>();
 		//if anything is empty we pass not null into the search
 		//ATHLETE TABLE
@@ -472,7 +488,8 @@ public class AthleteTrackerDatabase {
 		return new ArrayList<Integer>(ids);
 	}
 	
-	private ArrayList<Integer> parseInjuryInfoAndSearch(String injuryType, int bodyPartID,String activeInjuries,Date start, Date end, String Season){
+	private ArrayList<Integer> parseInjuryInfoAndSearch(String injuryType, int bodyPartID,String activeInjuries,
+														Date start, Date end, String Season){
 		ArrayList<Integer> ids = new ArrayList<Integer>();
 		String dateString="";
 		String injuryTypeID="";
@@ -603,7 +620,9 @@ public class AthleteTrackerDatabase {
 
 	public boolean addSOAPNote(Injury injury, SOAPNotes note){
 		String table = "SOAPNOTES";
-		String[] data = {"(INJURYID,SUBJECTIVE,OBJECTIVE,ANALYSIS,PLAN,DATE)",""+injury.getInjuryID()+",","'"+note.getSubjective()+"',","'"+note.getObjective()+"',","'"+note.getAssessment()+"',","'"+note.getSubjective()+"',","'"+note.getDate()+"'"};
+		String[] data = {"(INJURYID,SUBJECTIVE,OBJECTIVE,ANALYSIS,PLAN,DATE)",
+				""+injury.getInjuryID()+",","'"+note.getSubjective()+"',","'"+note.getObjective()+"',",
+				"'"+note.getAssessment()+"',","'"+note.getSubjective()+"',","'"+note.getDate()+"'"};
 		return database.insert(table, data);
 	}
 
@@ -679,6 +698,12 @@ public class AthleteTrackerDatabase {
 		String table = "ATHLETESPORTS";
 		String[] data = {"(STUDENTID,SPORTID)",+currentAthlete.getStudentID()+",",""+sportID};
 		return database.insert(table, data);
+	}
+	
+	public String getBodyPartByID(int bodyPartID){
+		String[] data = {"BODYPARTID = "+bodyPartID};
+		ArrayList<ArrayList<String>> temp = database.select("BODYPART", data);
+		return temp.get(0).get(1);
 	}
 	
 	public boolean editAthlete(Athlete oldAthlete, Athlete newAthlete ){
@@ -761,7 +786,6 @@ public class AthleteTrackerDatabase {
 				}
 				reportFile.close();
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

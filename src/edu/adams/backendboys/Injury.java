@@ -21,7 +21,9 @@ public class Injury {
 
 	}
 	
-	public Injury(int bodyPartID,int injuryID, String injuryType, Date injuryDate, Boolean active, String season, ArrayList<SOAPNotes> soapNotes, ArrayList<PhysicianVisit> physicianVisits, ArrayList<InjuryProgress> injuryProgressNotes){
+	public Injury(int bodyPartID,int injuryID, String injuryType, 
+			Date injuryDate, Boolean active, String season, ArrayList<SOAPNotes> soapNotes, 
+			ArrayList<PhysicianVisit> physicianVisits, ArrayList<InjuryProgress> injuryProgressNotes){
 		this.bodyPartID=bodyPartID;
 		this.injuryID=injuryID;
 		this.injuryType=injuryType;

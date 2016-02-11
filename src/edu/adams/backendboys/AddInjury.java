@@ -1,5 +1,9 @@
 package edu.adams.backendboys;
-
+/**
+ * This class adds all of the possible injury types for each body part.
+ * @author ZBagby
+ *
+ */
 public class AddInjury {
 	public static void main(String[] args){
 		AthleteTrackerDatabase database = new AthleteTrackerDatabase();

@@ -9,6 +9,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import edu.adams.backendboys.Athlete;
 import edu.adams.backendboys.AthleteTrackerDatabase;
 import edu.adams.backendboys.Injury;
@@ -18,6 +20,8 @@ import edu.adams.backendboys.SOAPNotes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -88,10 +92,24 @@ public class AddInjuryWindowController implements Initializable{
 	/**
 	 * creates a new injury using information user has added and adds it 
 	 * to the database for the current athlete. It will also close this 
-	 * window when pressed.
+	 * window when pressed. If A field is not working a message will
+	 * come up saying "fill all fields". 
 	 * @param me action event
 	 */
 	public void addInjuryButtonAction(ActionEvent me){
+		if(addInjuryInjuryDateDatePicker.getValue() == null || addInjuryNewPhysicianNotesDatePicker.getValue() == null || addInjuryNewProgressNotesDatePicker.getValue() == null
+				|| addInjurySNotesTextArea.getText().isEmpty() || addInjuryONotesTextArea.getText().isEmpty() || addInjuryANotesTextArea.getText().isEmpty() ||
+				addInjuryPNotesTextArea.getText().isEmpty() || addInjuryNewPhysicianNotesTextArea.getText().isEmpty() || addInjuryNewProgressNotesTextArea.getText().isEmpty() ||
+				addInjuryBodyPartComboBox.getValue() == null || addInjuryInjuryTypeComboBox.getValue() == null || addInjurySeasonComboBox.getValue() == null)
+		{
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Error Adding");
+			alert.setHeaderText(null);
+			alert.setContentText("Please Fill all fields");
+
+			alert.showAndWait();
+		}else
+		{
 		LocalDate localDate1 = addInjuryInjuryDateDatePicker.getValue();
 		Instant instant1 = Instant.from(localDate1.atStartOfDay(ZoneId.systemDefault()));
 		Date date1 = Date.from(instant1);
@@ -122,8 +140,14 @@ public class AddInjuryWindowController implements Initializable{
 		atdb.addInjury(currentAthlete, injury);
 		
 		Stage stage = (Stage) addInjuryButton.getScene().getWindow();
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Add Successful");
+		alert.setHeaderText(null);
+		alert.setContentText("Injury added successfully");
+
+		alert.showAndWait();
 		stage.close();
-		
+		}
 	}
 
 	public void setAthlete(Athlete currentAthlete) {
