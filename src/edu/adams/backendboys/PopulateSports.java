@@ -31,9 +31,9 @@ public class PopulateSports {
 		database.insert(table, data);
 		data[1]="'Softball'";
 		database.insert(table, data);
-		data[1]="'Mens Lacross'";
+		data[1]="'Mens Lacrosse'";
 		database.insert(table, data);
-		data[1]="'Womens Lacross'";
+		data[1]="'Womens Lacrosse'";
 		database.insert(table, data);
 		data[1]="'Mens Track and Field'";
 		database.insert(table, data);

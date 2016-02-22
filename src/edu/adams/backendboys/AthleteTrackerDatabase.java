@@ -281,7 +281,7 @@ public class AthleteTrackerDatabase {
 		
 		//database search to get contacts from db
 		tempStorage=new ArrayList<ArrayList<String>>();
-		tempStorage= database.select("INJURIES", idData);
+		tempStorage= database.select("EMERGENCYCONTACT", idData);
 		String Contact1Name="";
 		String Contact1Phone="";
 		String Contact2Name="";
@@ -634,7 +634,7 @@ public class AthleteTrackerDatabase {
 
 	public boolean addPhysicianVisit(Injury injury, PhysicianVisit visit){
 		String table="PHYSICIANVISIT";
-		String[] data= {"(INJURYID,DATE,NOTE)",""+injury.getInjuryID()+",","'"+visit.getDate()+"',",visit.getNote()};
+		String[] data= {"(INJURYID,DATE,NOTE)",""+injury.getInjuryID()+",","'"+visit.getDate()+"',","'"+visit.getNote()+"'"};
 		return database.insert(table, data);
 	}
 		

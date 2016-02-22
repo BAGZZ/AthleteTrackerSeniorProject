@@ -58,11 +58,11 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="firstNameAthleteText" editable="false" layoutX="57.0" layoutY="28.0" prefHeight="25.0" prefWidth="97.0" promptText="First" styleClass="selectedAthlete" />
-                              <TextField fx:id="miAthleteText" editable="false" layoutX="158.0" layoutY="28.0" prefHeight="25.0" prefWidth="33.0" promptText="M.I." styleClass="selectedAthlete" />
-                              <TextField fx:id="lastNameAthleteText" editable="false" layoutX="193.0" layoutY="28.0" prefHeight="25.0" prefWidth="126.0" promptText="Last" styleClass="selectedAthlete" />
+                              <TextField fx:id="firstNameAthleteText" editable="false" layoutX="10.0" layoutY="28.0" prefHeight="25.0" prefWidth="97.0" promptText="First" styleClass="selectedAthlete" />
+                              <TextField fx:id="miAthleteText" editable="false" layoutX="110.0" layoutY="28.0" prefHeight="25.0" prefWidth="33.0" promptText="M.I." styleClass="selectedAthlete" />
+                              <TextField fx:id="lastNameAthleteText" editable="false" layoutX="145.0" layoutY="28.0" prefHeight="25.0" prefWidth="126.0" promptText="Last" styleClass="selectedAthlete" />
                               <TextField fx:id="sportsAthleteText" editable="false" layoutX="121.0" layoutY="65.0" prefHeight="25.0" prefWidth="245.0" promptText="Sports" styleClass="selectedAthlete" />
-                              <CheckBox fx:id="activeCheckBox" disable="true" layoutX="245.0" layoutY="92.0" mnemonicParsing="false" selected="true" styleClass="selectedAthlete" text="Active" />
+                              <CheckBox fx:id="activeCheckBox" disable="true" layoutX="241.0" layoutY="115.0" mnemonicParsing="false" selected="true" styleClass="selectedAthlete" text="Active" />
                               <TextField fx:id="eligibilityAthleteText" editable="false" layoutX="121.0" layoutY="155.0" prefHeight="25.0" prefWidth="97.0" promptText="Eligibility" styleClass="selectedAthlete" />
                               <TextField fx:id="idAthleteText" editable="false" layoutX="121.0" layoutY="110.0" prefHeight="25.0" prefWidth="97.0" promptText="ID" styleClass="selectedAthlete" />
                               <TextField fx:id="yearAthleteText" editable="false" layoutX="268.0" layoutY="155.0" prefHeight="25.0" prefWidth="97.0" promptText="Year" styleClass="selectedAthlete" />
@@ -70,6 +70,8 @@
                               <Label layoutX="50.0" layoutY="115.0" styleClass="selectedAthlete" text="Student ID:" />
                               <Label layoutX="57.0" layoutY="159.0" styleClass="selectedAthlete" text="Eligibility:" />
                               <Label layoutX="230.0" layoutY="160.0" styleClass="selectedAthlete" text="Year:" />
+                              <Label layoutX="263.0" layoutY="6.0" prefHeight="17.0" prefWidth="88.0" styleClass="selectedAthlete" text="Date Of Birth:" />
+                              <TextField fx:id="dateOfBirthText" editable="false" layoutX="277.0" layoutY="28.0" prefHeight="25.0" prefWidth="97.0" promptText="DOB" styleClass="selectedAthlete" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="439.0" styleClass="myAnchorPanes">

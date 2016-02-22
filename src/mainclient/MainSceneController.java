@@ -111,6 +111,7 @@ public class MainSceneController implements Initializable {
 		studentNumberSearchText,
 		
 		//athlete information
+		dateOfBirthText,
 		firstNameAthleteText,
 		miAthleteText,
 		lastNameAthleteText,
@@ -469,6 +470,7 @@ public class MainSceneController implements Initializable {
 		ecPhoneContactText1.getStyleClass().add("selectedAthlete");
 		ecPhoneContactText2.getStyleClass().add("selectedAthlete");
 		
+		dateOfBirthText.getStyleClass().add("selectedAthlete");
 		firstNameAthleteText.getStyleClass().add("selectedAthlete");
 		miAthleteText.getStyleClass().add("selectedAthlete");
 		lastNameAthleteText.getStyleClass().add("selectedAthlete");
@@ -626,6 +628,7 @@ public class MainSceneController implements Initializable {
 	        currentAthlete = (searchTableView.getSelectionModel().getSelectedItem()); 
 	           
 			//Populate Selected Athlete Tab
+	        dateOfBirthText.setText(currentAthlete.getDateOfBirth().toString());
 			firstNameAthleteText.setText(currentAthlete.getFirstName());
 			miAthleteText.setText(String.valueOf(currentAthlete.getMiddleInitial()));
 			lastNameAthleteText.setText(currentAthlete.getLastName());
