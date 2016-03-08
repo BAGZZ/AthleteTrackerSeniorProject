@@ -13,7 +13,7 @@ public class SQLiteDatabase extends Database {
 	Connection connectionToDatabase=null;
 	Statement statement=null;
 	String databaseLocation ="C:\\Users\\ZBagby\\Desktop\\AthleteTracker\\AthleteTracker\\resources\\ASUAthleteTracker.db";
-	
+	//String databaseLocation="S:\\AthleteTracker\\AthleteTracker\\resources\\ASUAthleteTracker.db";
 	public SQLiteDatabase() {
 		try {
 			Class.forName("org.sqlite.JDBC");

@@ -185,7 +185,6 @@ public class MainSceneController implements Initializable {
 	 * Generates all of the visual elements before gui is shown
 	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		//do stuff here before viewing
 		//add information to specific column search table
 		columnFirstName = new TextColumn<Athlete>("firstName");
@@ -308,6 +307,7 @@ public class MainSceneController implements Initializable {
 			{
 				editAthleteButton.setText("Save Athlete");
 				
+				dateOfBirthText.setEditable(true);
 				phoneContactText.setEditable(true);
 				ecContactText1.setEditable(true);
 				ecContactText2.setEditable(true);
@@ -319,7 +319,8 @@ public class MainSceneController implements Initializable {
 				lastNameAthleteText.setEditable(true);
 				sportsAthleteText.setEditable(true);
 				yearAthleteText.setEditable(true);
-				idAthleteText.setEditable(true);
+				//Can't edit athlete ID because it is used in Database to store all info
+				//idAthleteText.setEditable(true);
 				eligibilityAthleteText.setEditable(true);
 				activeCheckBox.setDisable(false);
 				
@@ -333,9 +334,9 @@ public class MainSceneController implements Initializable {
 				firstNameAthleteText.getStyleClass().add("selectedAthleteEdit");
 				miAthleteText.getStyleClass().add("selectedAthleteEdit");
 				lastNameAthleteText.getStyleClass().add("selectedAthleteEdit");
+				dateOfBirthText.getStyleClass().add("selectedAthleteEdit");
 				sportsAthleteText.getStyleClass().add("selectedAthleteEdit");
 				yearAthleteText.getStyleClass().add("selectedAthleteEdit");
-				idAthleteText.getStyleClass().add("selectedAthleteEdit");
 				eligibilityAthleteText.getStyleClass().add("selectedAthleteEdit");
 				activeCheckBox.getStyleClass().add("selectedAthleteEdit");
 				
@@ -344,8 +345,34 @@ public class MainSceneController implements Initializable {
 				
 			}
 			
-			else
+			else if (editAthleteButton.getText().startsWith("Save"))
 			{
+				Athlete updatedAthlete = new Athlete(currentAthlete.getFirstName(), currentAthlete.getMiddleInitial(), currentAthlete.getLastName(), currentAthlete.getDateOfBirth(), currentAthlete.getCellNumber(), currentAthlete.getStudentID(), currentAthlete.getGender(), currentAthlete.getYearAtUniversity(), currentAthlete.getEligibility(), currentAthlete.isActive(), currentAthlete.getAllergies(), currentAthlete.getMedications(), currentAthlete.getSports(), currentAthlete.getInjuryList(), currentAthlete.getContacts(), currentAthlete.getInsuranceInfo());
+				updatedAthlete.setFirstName(firstNameAthleteText.getText());
+				updatedAthlete.setMiddleInitial(miAthleteText.getCharacters().charAt(0));
+				updatedAthlete.setLastName(lastNameAthleteText.getText());
+				updatedAthlete.setDateOfBirth(java.sql.Date.valueOf(dateOfBirthText.getText()));
+				updatedAthlete.setSports(sportsAthleteText.getText());
+				updatedAthlete.setStudentID(Integer.parseInt(idAthleteText.getText()));
+				updatedAthlete.setEligibility(eligibilityAthleteText.getText());
+				updatedAthlete.setActive(activeCheckBox.isSelected());
+				updatedAthlete.setCellNumber(phoneContactText.getText());
+				updatedAthlete.setYearAtUniversity(yearAthleteText.getText());
+				
+				updatedAthlete.getContacts().setContact1Name(ecContactText1.getText());
+				updatedAthlete.getContacts().setContact1Phone(ecPhoneContactText1.getText());
+				updatedAthlete.getContacts().setContact2Name(ecContactText2.getText());
+				updatedAthlete.getContacts().setContact2Phone(ecPhoneContactText2.getText());
+
+				
+				System.out.println(atdb.editAthlete(currentAthlete, updatedAthlete));
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Changes were made");
+				alert.setHeaderText(null);
+				alert.setContentText("Changes were made successfully");
+
+				alert.showAndWait();
+				//TODO
 				editAthleteButton.setText("Edit Athlete");
 				phoneContactText.setEditable(false);
 				ecContactText1.setEditable(false);
@@ -362,13 +389,6 @@ public class MainSceneController implements Initializable {
 				eligibilityAthleteText.setEditable(false);
 				activeCheckBox.setDisable(true);
 				
-				EmergencyContact ec = new EmergencyContact(ecContactText1.getText(), ecPhoneContactText1.getText(), ecContactText2.getText(), ecContactText2.getText());
-				
-	//			Athlete editedAthlete = new Athlete(firstNameAthleteText.getText(), miAthleteText.getText().charAt(0), lastNameAthleteText.getText(), dobAthleteText.getText(),
-	//					phoneContactText.getText(), idAthleteText.getText(), currentAthlete.getGender(), yearAthleteText.getText(), eligibilityAthleteText.getText(),
-	//					activeCheckBox.isSelected(), currentAthlete.getAllergies(), currentAthlete.getMedications(), sportsAthleteText.getText(), currentAthlete.getInjuries(), 
-	//					ec, currentAthlete.getInsuranceInfo());
-				
 				//clear css class
 				phoneContactText.getStyleClass().clear();
 				ecContactText1.getStyleClass().clear();
@@ -379,6 +399,7 @@ public class MainSceneController implements Initializable {
 				firstNameAthleteText.getStyleClass().clear();
 				miAthleteText.getStyleClass().clear();
 				lastNameAthleteText.getStyleClass().clear();
+				dateOfBirthText.getStyleClass().clear();
 				sportsAthleteText.getStyleClass().clear();
 				yearAthleteText.getStyleClass().clear();
 				idAthleteText.getStyleClass().clear();
@@ -394,6 +415,7 @@ public class MainSceneController implements Initializable {
 				firstNameAthleteText.getStyleClass().add("selectedAthlete");
 				miAthleteText.getStyleClass().add("selectedAthlete");
 				lastNameAthleteText.getStyleClass().add("selectedAthlete");
+				dateOfBirthText.getStyleClass().add("selectedAthlete");
 				sportsAthleteText.getStyleClass().add("selectedAthlete");
 				yearAthleteText.getStyleClass().add("selectedAthlete");
 				idAthleteText.getStyleClass().add("selectedAthlete");
@@ -458,6 +480,7 @@ public class MainSceneController implements Initializable {
 		firstNameAthleteText.getStyleClass().clear();
 		miAthleteText.getStyleClass().clear();
 		lastNameAthleteText.getStyleClass().clear();
+		dateOfBirthText.getStyleClass().clear();
 		sportsAthleteText.getStyleClass().clear();
 		yearAthleteText.getStyleClass().clear();
 		idAthleteText.getStyleClass().clear();

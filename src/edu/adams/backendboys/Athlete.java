@@ -22,7 +22,7 @@ public class Athlete {
 	private InsuranceInformation insuranceInfo;
 	
 	@SuppressWarnings("unused")
-	private Athlete(){
+	public Athlete(){
 		
 	}
 	
@@ -138,6 +138,79 @@ public class Athlete {
 	 */
 	public boolean getActiveInjury() {
 		return activeInjury;
+	}
+	
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setCellNumber(String cellNumber) {
+		this.cellNumber = cellNumber;
+	}
+
+	public void setYearAtUniversity(String yearAtUniversity) {
+		YearAtUniversity = yearAtUniversity;
+	}
+
+	public void setEligibility(String eligibility) {
+		this.eligibility = eligibility;
+	}
+
+	public void setSports(String sports) {
+		this.sports = sports;
+	}
+
+	public void setAllergies(String allergies) {
+		this.allergies = allergies;
+	}
+
+	public void setMedications(String medications) {
+		this.medications = medications;
+	}
+
+	public void setMiddleInitial(char middleInitial) {
+		this.middleInitial = middleInitial;
+	}
+
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public void setStudentID(int studentID) {
+		this.studentID = studentID;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public void setActiveInjury(boolean activeInjury) {
+		this.activeInjury = activeInjury;
+	}
+
+	public void setInjuryList(ArrayList<Injury> injuryList) {
+		this.injuryList = injuryList;
+	}
+
+	public void setInjuries(String injuries) {
+		this.injuries = injuries;
+	}
+
+	public void setContacts(EmergencyContact contacts) {
+		this.contacts = contacts;
+	}
+
+	public void setInsuranceInfo(InsuranceInformation insuranceInfo) {
+		this.insuranceInfo = insuranceInfo;
 	}
 
 	/**

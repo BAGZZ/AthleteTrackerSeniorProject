@@ -232,7 +232,7 @@ public class AthleteTrackerDatabase {
 			injuryID = Integer.parseInt(injury.get(0));
 			injuryType = getInjuryType(Integer.parseInt(injury.get(2)));
 			injuryDate=java.sql.Date.valueOf(injury.get(3));
-			//TODO FIX THIS SHIT, LIKE MEOW
+			//TODO FIX 
 			bodyPartID = getBodyPartIDByInjuryType(injuryType);
 			activeInjury=true;
 			if(injury.get(4).contains("0")){
@@ -708,13 +708,17 @@ public class AthleteTrackerDatabase {
 	
 	public boolean editAthlete(Athlete oldAthlete, Athlete newAthlete ){
 		String table = "ATHLETE";
+		String emergContact = "EMERGENCYCONTACT";
 		String activeString="1";
 		if(!newAthlete.isActive()){
 			activeString="0";
 		}
 		String[] searchData = {"STUDENTID="+oldAthlete.getStudentID()};
-		String[] updatedData ={"STUDENTID="+newAthlete.getStudentID()+",","FIRSTNAME='"+newAthlete.getFirstName()+"',","MIDDLEINITIAL='"+newAthlete.getMiddleInitial()+"',","LASTNAME='"+newAthlete.getLastName()+"',","DATEOFBIRTH='"+newAthlete.getDateOfBirth()+"',","CELLNUMBER='"+newAthlete.getCellNumber()+"',","GENDER='"+newAthlete.getGender()+"',","YEARATUNIVERSITY='"+newAthlete.getYearAtUniversity()+"',","ELIGIBILITY='"+newAthlete.getEligibility()+"',","ACTIVE='"+activeString+"',","ALLERGIES='"+newAthlete.getAllergies()+"',","MEDICATIONS='"+newAthlete.getMedications()+"'"};
-		
+		String[] updatedData ={"STUDENTID="+newAthlete.getStudentID()+",","FIRSTNAME='"+newAthlete.getFirstName()+"',","MIDDLEINITIAL='"+newAthlete.getMiddleInitial()+"',","LASTNAME='"+newAthlete.getLastName()+"',","DATEOFBIRTH='"+newAthlete.getDateOfBirth()+"',","CELLNUMBER='"+newAthlete.getCellNumber()+"',",
+				"GENDER='"+newAthlete.getGender()+"',","YEARATUNIVERSITY='"+newAthlete.getYearAtUniversity()+"',","ELIGIBILITY='"+newAthlete.getEligibility()+"',","ACTIVE='"+activeString+"',","ALLERGIES='"+newAthlete.getAllergies()+"',","MEDICATIONS='"+newAthlete.getMedications()+"'"};
+		String[] updatedContact ={"STUDENTID="+newAthlete.getStudentID()+",","CONTACTNAME1='"+newAthlete.getContacts().getContact1Name()+"',","CONTACTPHONE1='"+newAthlete.getContacts().getContact1Phone()+"',","CONTACTNAME2='"+newAthlete.getContacts().getContact2Name()+"',","CONTACTPHONE2='"+newAthlete.getContacts().getContact2Phone()+"'"};
+
+	    database.update(emergContact, updatedContact, searchData);
 		return database.update(table, updatedData, searchData);
 	}
 	
