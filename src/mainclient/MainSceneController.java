@@ -347,7 +347,13 @@ public class MainSceneController implements Initializable {
 			
 			else if (editAthleteButton.getText().startsWith("Save"))
 			{
-				Athlete updatedAthlete = new Athlete(currentAthlete.getFirstName(), currentAthlete.getMiddleInitial(), currentAthlete.getLastName(), currentAthlete.getDateOfBirth(), currentAthlete.getCellNumber(), currentAthlete.getStudentID(), currentAthlete.getGender(), currentAthlete.getYearAtUniversity(), currentAthlete.getEligibility(), currentAthlete.isActive(), currentAthlete.getAllergies(), currentAthlete.getMedications(), currentAthlete.getSports(), currentAthlete.getInjuryList(), currentAthlete.getContacts(), currentAthlete.getInsuranceInfo());
+				//create a new athlete "updatedAthlete" that is created from values of text boxes. required for editAthlete method
+				Athlete updatedAthlete = new Athlete(currentAthlete.getFirstName(), currentAthlete.getMiddleInitial(), 
+						currentAthlete.getLastName(), currentAthlete.getDateOfBirth(), currentAthlete.getCellNumber(), 
+						currentAthlete.getStudentID(), currentAthlete.getGender(), currentAthlete.getYearAtUniversity(), 
+						currentAthlete.getEligibility(), currentAthlete.isActive(), currentAthlete.getAllergies(), 
+						currentAthlete.getMedications(), currentAthlete.getSports(), currentAthlete.getInjuryList(), 
+						currentAthlete.getContacts(), currentAthlete.getInsuranceInfo());
 				updatedAthlete.setFirstName(firstNameAthleteText.getText());
 				updatedAthlete.setMiddleInitial(miAthleteText.getCharacters().charAt(0));
 				updatedAthlete.setLastName(lastNameAthleteText.getText());
@@ -363,16 +369,19 @@ public class MainSceneController implements Initializable {
 				updatedAthlete.getContacts().setContact1Phone(ecPhoneContactText1.getText());
 				updatedAthlete.getContacts().setContact2Name(ecContactText2.getText());
 				updatedAthlete.getContacts().setContact2Phone(ecPhoneContactText2.getText());
-
 				
-				System.out.println(atdb.editAthlete(currentAthlete, updatedAthlete));
+				//Uses edit athlete method in athlete tracker database to update
+				atdb.editAthlete(currentAthlete, updatedAthlete);
+				
+				//pop-up notifying user that everything was updated successfully
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Changes were made");
 				alert.setHeaderText(null);
 				alert.setContentText("Changes were made successfully");
-
 				alert.showAndWait();
-				//TODO
+				
+				
+				//after changes are made and saved then textbox's are put into view only mode.
 				editAthleteButton.setText("Edit Athlete");
 				phoneContactText.setEditable(false);
 				ecContactText1.setEditable(false);

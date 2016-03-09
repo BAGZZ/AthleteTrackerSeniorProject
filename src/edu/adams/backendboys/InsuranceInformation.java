@@ -112,6 +112,63 @@ public class InsuranceInformation {
 	public int getCoPay() {
 		return coPay;
 	}
+	public void setStudentSSN(String studentSSN) {
+		this.studentSSN = studentSSN;
+	}
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	public void setInsurancePhone(String insurancePhone) {
+		this.insurancePhone = insurancePhone;
+	}
+	public void setPolicyID(String policyID) {
+		this.policyID = policyID;
+	}
+	public void setGroupNummber(String groupNummber) {
+		this.groupNummber = groupNummber;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public void setPreCertPhone(String preCertPhone) {
+		this.preCertPhone = preCertPhone;
+	}
+	public void setPolicyHolder(String policyHolder) {
+		this.policyHolder = policyHolder;
+	}
+	public void setPolicyHolderPhone(String policyHolderPhone) {
+		this.policyHolderPhone = policyHolderPhone;
+	}
+	public void setPolicyHolderAddress(String policyHolderAddress) {
+		this.policyHolderAddress = policyHolderAddress;
+	}
+	public void setPrimaryPhysician(String primaryPhysician) {
+		this.primaryPhysician = primaryPhysician;
+	}
+	public void setPhysicianPhone(String physicianPhone) {
+		this.physicianPhone = physicianPhone;
+	}
+	public void setPolicyEffective(Date policyEffective) {
+		this.policyEffective = policyEffective;
+	}
+	public void setPolicyExpiration(Date policyExpiration) {
+		this.policyExpiration = policyExpiration;
+	}
+	public void setCoverAthleticInjury(Boolean coverAthleticInjury) {
+		this.coverAthleticInjury = coverAthleticInjury;
+	}
+	public void setReferral(Boolean referral) {
+		this.referral = referral;
+	}
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+	public void setDeductible(int deductible) {
+		this.deductible = deductible;
+	}
+	public void setCoPay(int coPay) {
+		this.coPay = coPay;
+	}
 	
 	
 }

@@ -329,8 +329,9 @@ public class AthleteTrackerDatabase {
 		if(tempStorage.get(0).get(17).contains("0")){
 			referral = false;
 		}
-		String primaryPhysician = tempStorage.get(0).get(17);
-		String physicianPhone = tempStorage.get(0).get(18);
+		//TODO
+		String primaryPhysician = tempStorage.get(0).get(18);
+		String physicianPhone = tempStorage.get(0).get(19);
 		
 		
 		InsuranceInformation insuranceInfo = new InsuranceInformation(studentSSN, companyName, insurancePhone, policyID, groupNumber, address, policyEffective, policyExpiration, coverAthleticInjury, preCertPhone, policyHolder, policyHolderPhone, policyHolderAddress, limit, deductible, coPay, referral, primaryPhysician, physicianPhone);

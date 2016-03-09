@@ -70,7 +70,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label fx:id="policyHolderAddressInsuranceInformationLabel" layoutX="240.0" layoutY="270.0" styleClass="displayInsurance" text="Address" underline="true">
+            <Label fx:id="policyHolderAddressInsuranceInformationLabel" layoutX="240.0" layoutY="270.0" styleClass="displayInsurance" text="Policy Holder Address" underline="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
@@ -131,11 +131,11 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label fx:id="insuranceAddressInsuranceInformationLabel" layoutX="360.0" layoutY="480.0" styleClass="displayInsurance" text="Address" underline="true">
+            <Label fx:id="insuranceAddressInsuranceInformationLabel" layoutX="360.0" layoutY="480.0" styleClass="displayInsurance" text="Insurance Company Address" underline="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <TextField fx:id="athleteNameInsuranceInformationLabel1" editable="false" layoutX="80.0" layoutY="85.0" styleClass="displayInsurance" />
+            <TextField fx:id="athleteFirstNameInsuranceInformationLabel1" editable="false" layoutX="21.0" layoutY="85.0" prefHeight="25.0" prefWidth="79.0" styleClass="displayInsurance" />
             <TextField fx:id="dobInsuranceInformationLabel1" editable="false" layoutX="240.0" layoutY="85.0" prefHeight="25.0" prefWidth="107.0" styleClass="displayInsurance" />
             <TextField fx:id="athleteCellInsuranceInformationLabel1" editable="false" layoutX="360.0" layoutY="85.0" prefHeight="25.0" prefWidth="146.0" styleClass="displayInsurance" />
             <TextField fx:id="ssnInsuranceInformationLabel1" editable="false" layoutX="520.0" layoutY="85.0" prefHeight="25.0" prefWidth="107.0" styleClass="displayInsurance" />
@@ -167,6 +167,8 @@
             <TextField fx:id="precertificationPhoneInsuranceInformationLabel1" editable="false" layoutX="80.0" layoutY="567.0" prefHeight="25.0" prefWidth="146.0" styleClass="displayInsurance" />
             <Button fx:id="insuranceInformationEditButton" layoutX="712.0" layoutY="12.0" mnemonicParsing="false" onAction="#insuranceInformationEditButtonAction" prefHeight="25.0" prefWidth="76.0" text="Edit" />
             <Button fx:id="insuranceInformationCancelButton" layoutX="712.0" layoutY="48.0" mnemonicParsing="false" onAction="#insuranceInformationCancelButtonAction" prefHeight="25.0" prefWidth="76.0" text="Cancel" visible="false" />
+            <TextField fx:id="athleteMiddleInitialInsuranceInformationLabel1" editable="false" layoutX="106.0" layoutY="85.0" prefHeight="25.0" prefWidth="23.0" styleClass="displayInsurance" />
+            <TextField fx:id="athleteLastNameInsuranceInformationLabel1" editable="false" layoutX="137.0" layoutY="85.0" prefHeight="25.0" prefWidth="101.0" styleClass="displayInsurance" />
          </children>
       </AnchorPane>
    </children>

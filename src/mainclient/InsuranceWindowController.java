@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import sun.security.jca.GetInstance;
 import edu.adams.backendboys.Athlete;
+import edu.adams.backendboys.AthleteTrackerDatabase;
 import edu.adams.backendboys.Injury;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,12 +19,16 @@ import javafx.scene.control.TextField;
  */
 public class InsuranceWindowController implements Initializable {
 	
+	AthleteTrackerDatabase atdb = new AthleteTrackerDatabase();
+	
 	private Athlete currentAthlete = null;
 	@FXML
 	private Button insuranceInformationEditButton,
 		insuranceInformationCancelButton;
 	@FXML
-	private TextField athleteNameInsuranceInformationLabel1,
+	private TextField athleteFirstNameInsuranceInformationLabel1,
+		athleteMiddleInitialInsuranceInformationLabel1,
+		athleteLastNameInsuranceInformationLabel1,
 		dobInsuranceInformationLabel1,
 		athleteCellInsuranceInformationLabel1,
 		ssnInsuranceInformationLabel1,
@@ -45,6 +50,8 @@ public class InsuranceWindowController implements Initializable {
 		precertificationPhoneInsuranceInformationLabel1,
 		policyHolderInsuranceInformationLabel1,
 		policyHolderPhoneInsuranceInformationLabel1,
+		policyHolderAddressInsuranceInformationLabel1,
+		policyIdInsuranceInformationLabel1,
 		limitInsuranceInformationLabel1,
 		deductibleInsuranceInformationLabel1,
 		copayInsuranceInformationLabel1,
@@ -63,7 +70,9 @@ public class InsuranceWindowController implements Initializable {
 	 */
 	public void setAthlete(Athlete currentAthlete){
 		this.currentAthlete = currentAthlete;
-		athleteNameInsuranceInformationLabel1.setText(currentAthlete.getFirstName()+" "+currentAthlete.getMiddleInitial()+" "+currentAthlete.getLastName());
+		athleteFirstNameInsuranceInformationLabel1.setText(currentAthlete.getFirstName());
+		athleteMiddleInitialInsuranceInformationLabel1.setText(String.valueOf(currentAthlete.getMiddleInitial()));
+		athleteLastNameInsuranceInformationLabel1.setText(currentAthlete.getLastName());
 		dobInsuranceInformationLabel1.setText(currentAthlete.getDateOfBirth().toString());
 		athleteCellInsuranceInformationLabel1.setText(currentAthlete.getCellNumber());
 		ssnInsuranceInformationLabel1.setText(currentAthlete.getInsuranceInfo().getStudentSSN());
@@ -85,6 +94,8 @@ public class InsuranceWindowController implements Initializable {
 		precertificationPhoneInsuranceInformationLabel1.setText(currentAthlete.getInsuranceInfo().getPreCertPhone());
 		policyHolderInsuranceInformationLabel1.setText(currentAthlete.getInsuranceInfo().getPolicyHolder());
 		policyHolderPhoneInsuranceInformationLabel1.setText(currentAthlete.getInsuranceInfo().getPolicyHolderPhone());
+		policyHolderAddressInsuranceInformationLabel1.setText(currentAthlete.getInsuranceInfo().getPolicyHolderAddress());
+		policyIdInsuranceInformationLabel1.setText(currentAthlete.getInsuranceInfo().getPolicyID());
 		limitInsuranceInformationLabel1.setText(""+currentAthlete.getInsuranceInfo().getLimit());
 		deductibleInsuranceInformationLabel1.setText(""+currentAthlete.getInsuranceInfo().getDeductible());
 		copayInsuranceInformationLabel1.setText(""+currentAthlete.getInsuranceInfo().getCoPay());
@@ -104,7 +115,9 @@ public class InsuranceWindowController implements Initializable {
 		{
 			insuranceInformationEditButton.setText("Save");
 			
-			athleteNameInsuranceInformationLabel1.setEditable(true);
+			athleteFirstNameInsuranceInformationLabel1.setEditable(true);
+			athleteMiddleInitialInsuranceInformationLabel1.setEditable(true);
+			athleteLastNameInsuranceInformationLabel1.setEditable(true);
 			dobInsuranceInformationLabel1.setEditable(true);
 			athleteCellInsuranceInformationLabel1.setEditable(true);
 			ssnInsuranceInformationLabel1.setEditable(true);
@@ -126,6 +139,8 @@ public class InsuranceWindowController implements Initializable {
 			precertificationPhoneInsuranceInformationLabel1.setEditable(true);
 			policyHolderInsuranceInformationLabel1.setEditable(true);
 			policyHolderPhoneInsuranceInformationLabel1.setEditable(true);
+			policyHolderAddressInsuranceInformationLabel1.setEditable(true);
+			policyIdInsuranceInformationLabel1.setEditable(true);
 			limitInsuranceInformationLabel1.setEditable(true);
 			deductibleInsuranceInformationLabel1.setEditable(true);
 			copayInsuranceInformationLabel1.setEditable(true);
@@ -134,7 +149,9 @@ public class InsuranceWindowController implements Initializable {
 			physicianPhoneInsuranceInformationLabel1.setEditable(true);
 			
 			//set css class
-			athleteNameInsuranceInformationLabel1.getStyleClass().add("displayInsuranceEdit");
+			athleteFirstNameInsuranceInformationLabel1.getStyleClass().add("displayInsuranceEdit");
+			athleteMiddleInitialInsuranceInformationLabel1.getStyleClass().add("displayInsuranceEdit");
+			athleteLastNameInsuranceInformationLabel1.getStyleClass().add("displayInsuranceEdit");
 			dobInsuranceInformationLabel1.getStyleClass().add("displayInsuranceEdit");
 			athleteCellInsuranceInformationLabel1.getStyleClass().add("displayInsuranceEdit");
 			ssnInsuranceInformationLabel1.getStyleClass().add("displayInsuranceEdit");
@@ -156,6 +173,8 @@ public class InsuranceWindowController implements Initializable {
 			precertificationPhoneInsuranceInformationLabel1.getStyleClass().add("displayInsuranceEdit");
 			policyHolderInsuranceInformationLabel1.getStyleClass().add("displayInsuranceEdit");
 			policyHolderPhoneInsuranceInformationLabel1.getStyleClass().add("displayInsuranceEdit");
+			policyHolderAddressInsuranceInformationLabel1.getStyleClass().add("displayInsuranceEdit");
+			policyIdInsuranceInformationLabel1.getStyleClass().add("displayInsuranceEdit");
 			limitInsuranceInformationLabel1.getStyleClass().add("displayInsuranceEdit");
 			deductibleInsuranceInformationLabel1.getStyleClass().add("displayInsuranceEdit");
 			copayInsuranceInformationLabel1.getStyleClass().add("displayInsuranceEdit");
@@ -170,9 +189,55 @@ public class InsuranceWindowController implements Initializable {
 		
 		else
 		{
+			//TODO
+			Athlete updatedAthlete = new Athlete(currentAthlete.getFirstName(), currentAthlete.getMiddleInitial(), 
+					currentAthlete.getLastName(), currentAthlete.getDateOfBirth(), currentAthlete.getCellNumber(), 
+					currentAthlete.getStudentID(), currentAthlete.getGender(), currentAthlete.getYearAtUniversity(), 
+					currentAthlete.getEligibility(), currentAthlete.isActive(), currentAthlete.getAllergies(), 
+					currentAthlete.getMedications(), currentAthlete.getSports(), currentAthlete.getInjuryList(), 
+					currentAthlete.getContacts(), currentAthlete.getInsuranceInfo());
+			
+			updatedAthlete.setFirstName(athleteFirstNameInsuranceInformationLabel1.getText());
+			updatedAthlete.setMiddleInitial(athleteMiddleInitialInsuranceInformationLabel1.getCharacters().charAt(0));
+			updatedAthlete.setLastName(athleteLastNameInsuranceInformationLabel1.getText());
+			updatedAthlete.setDateOfBirth(java.sql.Date.valueOf(dobInsuranceInformationLabel1.getText()));
+			updatedAthlete.setCellNumber(athleteCellInsuranceInformationLabel1.getText());
+			updatedAthlete.getInsuranceInfo().setStudentSSN(ssnInsuranceInformationLabel1.getText());
+			updatedAthlete.setGender(genderInsuranceInformationLabel1.getCharacters().charAt(0));
+			updatedAthlete.setSports(sportsInsuranceInformationLabel1.getText());
+			updatedAthlete.setAllergies(allergiesInsuranceInformationLabel1.getText());
+			updatedAthlete.setMedications(medicationsInsuranceInformationLabel1.getText());
+			updatedAthlete.getContacts().setContact1Name(ecInsuranceInformationLabel11.getText());
+			updatedAthlete.getContacts().setContact1Phone(ecPhoneInsuranceInformationLabel11.getText());
+			updatedAthlete.getContacts().setContact2Name(ecInsuranceInformationLabel21.getText());
+			updatedAthlete.getContacts().setContact2Phone(ecPhoneInsuranceInformationLabel21.getText());
+			updatedAthlete.getInsuranceInfo().setCompanyName(insuranceNameInsuranceInformationLabel11.getText());
+			updatedAthlete.getInsuranceInfo().setAddress(insuranceAddressInsuranceInformationLabel1.getText());
+			updatedAthlete.getInsuranceInfo().setInsurancePhone(insurancePhoneInsuranceInformationLabel1.getText());
+			updatedAthlete.getInsuranceInfo().setGroupNummber(groupNumberInsuranceInformationLabel1.getText());
+			updatedAthlete.getInsuranceInfo().setPolicyEffective(java.sql.Date.valueOf(effectiveDateInsuranceInformationLabel1.getText()));
+			updatedAthlete.getInsuranceInfo().setPolicyExpiration(java.sql.Date.valueOf(expirationDateInsuranceInformationLabel1.getText()));
+			updatedAthlete.getInsuranceInfo().setCoverAthleticInjury(Boolean.valueOf(coverAthleteInjuryInsuranceInformationLabel1.getText()));
+			updatedAthlete.getInsuranceInfo().setPreCertPhone(precertificationPhoneInsuranceInformationLabel1.getText());
+			updatedAthlete.getInsuranceInfo().setPolicyHolder(policyHolderInsuranceInformationLabel1.getText());
+			updatedAthlete.getInsuranceInfo().setPolicyHolderPhone(policyHolderPhoneInsuranceInformationLabel1.getText());
+			updatedAthlete.getInsuranceInfo().setPolicyHolderAddress(policyHolderAddressInsuranceInformationLabel1.getText());
+			updatedAthlete.getInsuranceInfo().setPolicyID(policyIdInsuranceInformationLabel1.getText());
+			updatedAthlete.getInsuranceInfo().setLimit(Integer.parseInt(limitInsuranceInformationLabel1.getText()));
+			updatedAthlete.getInsuranceInfo().setDeductible(Integer.parseInt(deductibleInsuranceInformationLabel1.getText()));
+			updatedAthlete.getInsuranceInfo().setCoPay(Integer.parseInt(copayInsuranceInformationLabel1.getText()));
+			updatedAthlete.getInsuranceInfo().setReferral(Boolean.valueOf(referralInsuranceInformationLabel1.getText()));
+			updatedAthlete.getInsuranceInfo().setPrimaryPhysician(primaryPhysicianInsuranceInformationLabel1.getText());
+			updatedAthlete.getInsuranceInfo().setPhysicianPhone(physicianPhoneInsuranceInformationLabel1.getText());
+			
+			atdb.editAthlete(currentAthlete, updatedAthlete);
+			atdb.editInsurance(currentAthlete, updatedAthlete.getInsuranceInfo());
+						
 			insuranceInformationEditButton.setText("Edit");
 			
-			athleteNameInsuranceInformationLabel1.setEditable(false);
+			athleteFirstNameInsuranceInformationLabel1.setEditable(false);
+			athleteMiddleInitialInsuranceInformationLabel1.setEditable(false);
+			athleteLastNameInsuranceInformationLabel1.setEditable(false);
 			dobInsuranceInformationLabel1.setEditable(false);
 			athleteCellInsuranceInformationLabel1.setEditable(false);
 			ssnInsuranceInformationLabel1.setEditable(false);
@@ -194,6 +259,8 @@ public class InsuranceWindowController implements Initializable {
 			precertificationPhoneInsuranceInformationLabel1.setEditable(false);
 			policyHolderInsuranceInformationLabel1.setEditable(false);
 			policyHolderPhoneInsuranceInformationLabel1.setEditable(false);
+			policyHolderAddressInsuranceInformationLabel1.setEditable(false);
+			policyIdInsuranceInformationLabel1.setEditable(false);
 			limitInsuranceInformationLabel1.setEditable(false);
 			deductibleInsuranceInformationLabel1.setEditable(false);
 			copayInsuranceInformationLabel1.setEditable(false);
@@ -201,7 +268,9 @@ public class InsuranceWindowController implements Initializable {
 			primaryPhysicianInsuranceInformationLabel1.setEditable(false);
 			physicianPhoneInsuranceInformationLabel1.setEditable(false);
 			
-			athleteNameInsuranceInformationLabel1.getStyleClass().clear();
+			athleteFirstNameInsuranceInformationLabel1.getStyleClass().clear();
+			athleteMiddleInitialInsuranceInformationLabel1.getStyleClass().clear();
+			athleteLastNameInsuranceInformationLabel1.getStyleClass().clear();
 			dobInsuranceInformationLabel1.getStyleClass().clear();
 			athleteCellInsuranceInformationLabel1.getStyleClass().clear();
 			ssnInsuranceInformationLabel1.getStyleClass().clear();
@@ -223,6 +292,8 @@ public class InsuranceWindowController implements Initializable {
 			precertificationPhoneInsuranceInformationLabel1.getStyleClass().clear();
 			policyHolderInsuranceInformationLabel1.getStyleClass().clear();
 			policyHolderPhoneInsuranceInformationLabel1.getStyleClass().clear();
+			policyHolderAddressInsuranceInformationLabel1.getStyleClass().clear();
+			policyIdInsuranceInformationLabel1.getStyleClass().clear();
 			limitInsuranceInformationLabel1.getStyleClass().clear();
 			deductibleInsuranceInformationLabel1.getStyleClass().clear();
 			copayInsuranceInformationLabel1.getStyleClass().clear();
@@ -231,7 +302,9 @@ public class InsuranceWindowController implements Initializable {
 			physicianPhoneInsuranceInformationLabel1.getStyleClass().clear();
 			
 			//set css class
-			athleteNameInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
+			athleteFirstNameInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
+			athleteMiddleInitialInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
+			athleteLastNameInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
 			dobInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
 			athleteCellInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
 			ssnInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
@@ -253,6 +326,8 @@ public class InsuranceWindowController implements Initializable {
 			precertificationPhoneInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
 			policyHolderInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
 			policyHolderPhoneInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
+			policyHolderAddressInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
+			policyIdInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
 			limitInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
 			deductibleInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
 			copayInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
@@ -279,7 +354,9 @@ public class InsuranceWindowController implements Initializable {
 		
 		insuranceInformationEditButton.setText("Edit");
 		
-		athleteNameInsuranceInformationLabel1.setText(currentAthlete.getFirstName()+" "+currentAthlete.getMiddleInitial()+" "+currentAthlete.getLastName());
+		athleteFirstNameInsuranceInformationLabel1.setText(currentAthlete.getFirstName());
+		athleteMiddleInitialInsuranceInformationLabel1.setText(String.valueOf(currentAthlete.getMiddleInitial()));
+		athleteLastNameInsuranceInformationLabel1.setText(currentAthlete.getLastName());
 		dobInsuranceInformationLabel1.setText(currentAthlete.getDateOfBirth().toString());
 		athleteCellInsuranceInformationLabel1.setText(currentAthlete.getCellNumber());
 		ssnInsuranceInformationLabel1.setText(currentAthlete.getInsuranceInfo().getStudentSSN());
@@ -301,6 +378,8 @@ public class InsuranceWindowController implements Initializable {
 		precertificationPhoneInsuranceInformationLabel1.setText(currentAthlete.getInsuranceInfo().getPreCertPhone());
 		policyHolderInsuranceInformationLabel1.setText(currentAthlete.getInsuranceInfo().getPolicyHolder());
 		policyHolderPhoneInsuranceInformationLabel1.setText(currentAthlete.getInsuranceInfo().getPolicyHolderPhone());
+		policyHolderAddressInsuranceInformationLabel1.setText(currentAthlete.getInsuranceInfo().getPolicyHolderAddress());
+		policyIdInsuranceInformationLabel1.setText(currentAthlete.getInsuranceInfo().getPolicyID());
 		limitInsuranceInformationLabel1.setText(""+currentAthlete.getInsuranceInfo().getLimit());
 		deductibleInsuranceInformationLabel1.setText(""+currentAthlete.getInsuranceInfo().getDeductible());
 		copayInsuranceInformationLabel1.setText(""+currentAthlete.getInsuranceInfo().getCoPay());
@@ -308,7 +387,9 @@ public class InsuranceWindowController implements Initializable {
 		primaryPhysicianInsuranceInformationLabel1.setText(currentAthlete.getInsuranceInfo().getPrimaryPhysician());
 		physicianPhoneInsuranceInformationLabel1.setText(currentAthlete.getInsuranceInfo().getPhysicianPhone());
 		
-		athleteNameInsuranceInformationLabel1.setEditable(false);
+		athleteFirstNameInsuranceInformationLabel1.setEditable(false);
+		athleteMiddleInitialInsuranceInformationLabel1.setEditable(false);
+		athleteLastNameInsuranceInformationLabel1.setEditable(false);
 		dobInsuranceInformationLabel1.setEditable(false);
 		athleteCellInsuranceInformationLabel1.setEditable(false);
 		ssnInsuranceInformationLabel1.setEditable(false);
@@ -338,7 +419,9 @@ public class InsuranceWindowController implements Initializable {
 		physicianPhoneInsuranceInformationLabel1.setEditable(false);
 		
 		//clear css class
-		athleteNameInsuranceInformationLabel1.getStyleClass().clear();
+		athleteFirstNameInsuranceInformationLabel1.getStyleClass().clear();
+		athleteMiddleInitialInsuranceInformationLabel1.getStyleClass().clear();
+		athleteLastNameInsuranceInformationLabel1.getStyleClass().clear();
 		dobInsuranceInformationLabel1.getStyleClass().clear();
 		athleteCellInsuranceInformationLabel1.getStyleClass().clear();
 		ssnInsuranceInformationLabel1.getStyleClass().clear();
@@ -368,7 +451,9 @@ public class InsuranceWindowController implements Initializable {
 		physicianPhoneInsuranceInformationLabel1.getStyleClass().clear();
 		
 		//set css class
-		athleteNameInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
+		athleteFirstNameInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
+		athleteMiddleInitialInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
+		athleteLastNameInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
 		dobInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
 		athleteCellInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
 		ssnInsuranceInformationLabel1.getStyleClass().add("displayInsurance");

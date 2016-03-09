@@ -54,9 +54,10 @@ public class JavaFXPixel extends Application {
             FileChooser fileChooser = new FileChooser();
              
             //Set extension filter
-            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
-            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-            fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+//            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+//            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+//            FileChooser.ExtensionFilter extFilterPDF = new FileChooser.ExtensionFilter("PDF files (*.pdf", "*.PDF");
+//            fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG,extFilterPDF);
               
             //Show open file dialog
             File file = fileChooser.showOpenDialog(null);
