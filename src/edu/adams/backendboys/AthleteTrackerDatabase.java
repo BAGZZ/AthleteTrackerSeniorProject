@@ -329,7 +329,7 @@ public class AthleteTrackerDatabase {
 		if(tempStorage.get(0).get(17).contains("0")){
 			referral = false;
 		}
-		//TODO
+		//TODO numbers were off
 		String primaryPhysician = tempStorage.get(0).get(18);
 		String physicianPhone = tempStorage.get(0).get(19);
 		
@@ -455,6 +455,7 @@ public class AthleteTrackerDatabase {
 		}else{
 			gender="='"+gender.toUpperCase().charAt(0)+"'";
 		}
+		
 		String[][] data ={{"FIRSTNAME"+firstName}, {"MIDDLEINITIAL"+middleInitial}, {"LASTNAME"+lastName}, {"STUDENTID"+studentID}, {"GENDER"+gender}};
 		
 		if(firstName.equalsIgnoreCase("IS NOT NULL")){
@@ -477,8 +478,7 @@ public class AthleteTrackerDatabase {
 			data[4][0]="";
 		}
 				
-				
-				
+		//TODO  Ignore Case for name search
 		ArrayList<ArrayList<String>> temp = database.select("ATHLETE", data[0]);
 		for(int count=1; count<data.length; count++){
 			temp.retainAll(database.select("ATHLETE", data[count]));
@@ -543,7 +543,8 @@ public class AthleteTrackerDatabase {
 	public ArrayList<String> getSeasons(){
 		ArrayList<String> output= new ArrayList<String>();
 		String[] seasons = {"Fall","Winter","Spring","Summer"};
-		int[] years = {Calendar.getInstance().get(Calendar.YEAR),Calendar.getInstance().get(Calendar.YEAR)-1, Calendar.getInstance().get(Calendar.YEAR)-2 };
+		//int[] years = {Calendar.getInstance().get(Calendar.YEAR),Calendar.getInstance().get(Calendar.YEAR)-1, Calendar.getInstance().get(Calendar.YEAR)-2 };
+		int[] years = {2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023};
 		for(int year : years){
 			for(String season : seasons){
 				output.add(season+" "+year);
@@ -741,7 +742,7 @@ public class AthleteTrackerDatabase {
 		if(!newInsuranceInfo.getCoverAthleticInjury()){
 			coverAthleteString="0";
 		}
-		String[] insuranceData={"STUDENTID="+player.getStudentID()+",","STUDENTSSN='"+encryptedSSN+"',","COMPANYNAME='"+newInsuranceInfo.getCompanyName()+"',","INSURANCEPHONE='"+newInsuranceInfo.getInsurancePhone()+"',",
+		String[] insuranceData={"INJURYID="+player.getInjuries()+",","STUDENTSSN='"+encryptedSSN+"',","COMPANYNAME='"+newInsuranceInfo.getCompanyName()+"',","INSURANCEPHONE='"+newInsuranceInfo.getInsurancePhone()+"',",
 				"POLICYID='"+newInsuranceInfo.getPolicyID()+"',","GROUPNUMBER='"+newInsuranceInfo.getGroupNummber()+"',","ADDRESS='"+newInsuranceInfo.getAddress()+"',","POLICYEFFECTIVE='"+newInsuranceInfo.getPolicyEffective()+"',",
 				"POLICYEXPIRATION='"+newInsuranceInfo.getPolicyExpiration()+"',","COVERATHLETICINJURY="+coverAthleteString+",","PRECERTPHONE='"+newInsuranceInfo.getPreCertPhone()+"',","POLICYHOLDER='"+newInsuranceInfo.getPolicyHolder()+"',",
 				"POLICYHOLDERPHONE='"+newInsuranceInfo.getPolicyHolderPhone()+"',","POLICYHOLDERADDRESS='"+newInsuranceInfo.getPolicyHolderAddress()+"',","POLICYLIMIT="+newInsuranceInfo.getLimit()+",",
@@ -749,6 +750,18 @@ public class AthleteTrackerDatabase {
 				"PHYSICIANPHONE='"+newInsuranceInfo.getPhysicianPhone()+"'"};
 
 		return database.update(table, insuranceData, searchData);
+
+	}
+	//TODO jeremiah
+	public boolean editSoap(Athlete player, Injury injury, SOAPNotes newSOAP){
+		String table = "SOAPNOTES";
+		String[] searchData = {"INJURYID="+injury.getInjuryID()};
+		//String[] searchData = {"STUDENTID="+player.getStudentID()};
+
+		String[] SOAPData={"INJURYID="+injury.getInjuryID()+",","SUBJECTIVE='"+newSOAP.getSubjective()+"',","OBJECTIVE='"+newSOAP.getObjective()+"',","ASSESSMENT='"+newSOAP.getAssessment()+"',",
+				"PLAN='"+newSOAP.getPlan()+"',","DATE='"+injury.getInjuryDate()+"'"};
+
+		return database.update(table, SOAPData, searchData);
 
 	}
 	

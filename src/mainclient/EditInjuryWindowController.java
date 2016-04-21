@@ -16,6 +16,7 @@ import javafx.application.Preloader.ProgressNotification;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
@@ -23,12 +24,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import edu.adams.backendboys.Athlete;
 import edu.adams.backendboys.AthleteTrackerDatabase;
 import edu.adams.backendboys.Injury;
 import edu.adams.backendboys.InjuryProgress;
 import edu.adams.backendboys.PhysicianVisit;
+import edu.adams.backendboys.SOAPNotes;
 /**
  * controls all functionality within the edit injury window
  * @author ZBagby
@@ -181,10 +184,22 @@ public class EditInjuryWindowController implements Initializable {
 	}
 	
 	/**
-	 * Makes changes and adds them to the database
-	 * @param me mouse event 
+	 * Makes changes to SoapNotes and Whether injury is active or not and adds them to the database.
+	 * @param me action event 
 	 */
-	public void makeChangesButtonPressed(MouseEvent me){
+	public void makeChangesButtonPressed(ActionEvent ae){
+		//TODO
+		System.out.println("make Changes button pressed");
+		SOAPNotes newSOAP = new SOAPNotes(currentAthlete.getCurrentInjury().getSoapNotes().get(0).toString(),currentAthlete.getCurrentInjury().getSoapNotes().get(0).toString(),
+				currentAthlete.getCurrentInjury().getSoapNotes().get(0).toString(),currentAthlete.getCurrentInjury().getSoapNotes().get(0).toString(),currentAthlete.getCurrentInjury().getInjuryDate());
+		
+		atdb.editSoap(currentAthlete, currentAthlete.getCurrentInjury(), newSOAP);
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Changes were made");
+		alert.setHeaderText(null);
+		alert.setContentText("Changes were made successfully");
+		alert.showAndWait();
 		
 	}
 	
