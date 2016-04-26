@@ -184,21 +184,22 @@ public class EditInjuryWindowController implements Initializable {
 	}
 	
 	/**
-	 * Makes changes to SoapNotes and Whether injury is active or not and adds them to the database.
+	 * Makes changes to whether injury is active or not and updates the database.
 	 * @param me action event 
 	 */
 	public void makeChangesButtonPressed(ActionEvent ae){
 		//TODO
 		System.out.println("make Changes button pressed");
-		SOAPNotes newSOAP = new SOAPNotes(currentAthlete.getCurrentInjury().getSoapNotes().get(0).toString(),currentAthlete.getCurrentInjury().getSoapNotes().get(0).toString(),
-				currentAthlete.getCurrentInjury().getSoapNotes().get(0).toString(),currentAthlete.getCurrentInjury().getSoapNotes().get(0).toString(),currentAthlete.getCurrentInjury().getInjuryDate());
-		
-		atdb.editSoap(currentAthlete, currentAthlete.getCurrentInjury(), newSOAP);
-		
+		Injury newInjury = new Injury(currentAthlete.getCurrentInjury().getBodyPartID(), currentAthlete.getCurrentInjury().getInjuryID(), 
+				currentAthlete.getCurrentInjury().getInjuryType(), currentAthlete.getCurrentInjury().getInjuryDate(),
+				currentAthlete.getCurrentInjury().getActive(), currentAthlete.getCurrentInjury().getSeason(), currentAthlete.getCurrentInjury().getSoapNotes(), 
+				currentAthlete.getCurrentInjury().getPhysicianVisit(), currentAthlete.getCurrentInjury().getInjuryProgressNotes());
+		newInjury.setActive(editInjuryActiveInjuryCheckBox.isSelected());
+		atdb.editActiveInjury(currentAthlete.getCurrentInjury(), newInjury);
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Changes were made");
 		alert.setHeaderText(null);
-		alert.setContentText("Changes were made successfully");
+		alert.setContentText("Athlete active change made successfully");
 		alert.showAndWait();
 		
 	}

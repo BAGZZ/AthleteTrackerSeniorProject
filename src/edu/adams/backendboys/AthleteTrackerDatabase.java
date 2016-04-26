@@ -488,7 +488,7 @@ public class AthleteTrackerDatabase {
 		}
 		return new ArrayList<Integer>(ids);
 	}
-	
+	//TODO SEASON
 	private ArrayList<Integer> parseInjuryInfoAndSearch(String injuryType, int bodyPartID,String activeInjuries,
 														Date start, Date end, String Season){
 		ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -753,15 +753,14 @@ public class AthleteTrackerDatabase {
 
 	}
 	//TODO jeremiah
-	public boolean editSoap(Athlete player, Injury injury, SOAPNotes newSOAP){
-		String table = "SOAPNOTES";
-		String[] searchData = {"INJURYID="+injury.getInjuryID()};
+	public boolean editActiveInjury(Injury oldInjury, Injury newInjury){
+		String table = "INJURIES";
+		String[] searchData = {"INJURYID="+oldInjury.getInjuryID()};
 		//String[] searchData = {"STUDENTID="+player.getStudentID()};
 
-		String[] SOAPData={"INJURYID="+injury.getInjuryID()+",","SUBJECTIVE='"+newSOAP.getSubjective()+"',","OBJECTIVE='"+newSOAP.getObjective()+"',","ASSESSMENT='"+newSOAP.getAssessment()+"',",
-				"PLAN='"+newSOAP.getPlan()+"',","DATE='"+injury.getInjuryDate()+"'"};
+		String[] newData={"INJURYID="+newInjury.getInjuryID()+",","ACTIVE="+newInjury.getActive()+"'"};
 
-		return database.update(table, SOAPData, searchData);
+		return database.update(table, newData, searchData);
 
 	}
 	

@@ -2,9 +2,12 @@ package mainclient;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -51,6 +54,8 @@ public class MainFrame extends Application {
 	public static void main(String[] args)
 	{
         JFrame frame = new JFrame("Password");
+        frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel = new JPanel(new BorderLayout());
         JLabel label = new JLabel();
@@ -62,14 +67,13 @@ public class MainFrame extends Application {
         
         Container content = frame.getContentPane();
         content.add(panel, BorderLayout.NORTH);
-        frame.setSize(300, 75);
+        frame.setSize(400, 75);
         //frame.add(panel);
         frame.setVisible(true);
         
 
         passField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                char[] p = passField.getPassword();
                 String pass = new String(passField.getPassword());
                 if(pass.equals(password)){
                 	JOptionPane.showMessageDialog(null, "Welcome to the best Athlete Tracking software ever!");

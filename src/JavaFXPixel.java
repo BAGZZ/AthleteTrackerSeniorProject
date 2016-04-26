@@ -1,4 +1,5 @@
 
+import java.awt.Desktop;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -43,12 +44,22 @@ public class JavaFXPixel extends Application {
     }
  
     public static void main(String[] args) {
-        launch(args);
+        
+//    	if (Desktop.isDesktopSupported()) {
+//    	    try {
+//    	        File myFile = new File("C:/Users/ZBagby/Documents/BAGBY_ZACHARY_RESUME.PDF");
+//    	        Desktop.getDesktop().open(myFile);
+//    	    } catch (IOException ex) {
+//    	        // no application registered for PDFs
+//    	    }
+//    	}
+    	launch(args);
     }
      
     EventHandler<ActionEvent> btnLoadEventListener
     = new EventHandler<ActionEvent>(){
  
+
         @Override
         public void handle(ActionEvent t) {
             FileChooser fileChooser = new FileChooser();
@@ -61,14 +72,15 @@ public class JavaFXPixel extends Application {
               
             //Show open file dialog
             File file = fileChooser.showOpenDialog(null);
-                       
-            try {
-                BufferedImage bufferedImage = ImageIO.read(file);
-                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-                myImageView.setImage(image);
-            } catch (IOException ex) {
-                Logger.getLogger(JavaFXPixel.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                    String path = file.getAbsolutePath();  
+                    System.out.println(path);
+//            try {
+//                BufferedImage bufferedImage = ImageIO.read(file);
+//                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+//                myImageView.setImage(image);
+//            } catch (IOException ex) {
+//                Logger.getLogger(JavaFXPixel.class.getName()).log(Level.SEVERE, null, ex);
+//            }
         }
     };
 }

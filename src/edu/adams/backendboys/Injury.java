@@ -21,6 +21,54 @@ public class Injury {
 
 	}
 	
+	public void setInjuryID(int injuryID) {
+		this.injuryID = injuryID;
+	}
+
+	public void setBodyPartID(int bodyPartID) {
+		this.bodyPartID = bodyPartID;
+	}
+
+	public void setInjuryType(String injuryType) {
+		this.injuryType = injuryType;
+	}
+
+	public void setSeason(String season) {
+		this.season = season;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public void setInjuryDate(Date injuryDate) {
+		this.injuryDate = injuryDate;
+	}
+
+	public void setSoapNotes(ArrayList<SOAPNotes> soapNotes) {
+		this.soapNotes = soapNotes;
+	}
+
+	public void setLatestSOAPNote(String latestSOAPNote) {
+		this.latestSOAPNote = latestSOAPNote;
+	}
+
+	public void setLatestProgressNote(String latestProgressNote) {
+		this.latestProgressNote = latestProgressNote;
+	}
+
+	public void setLatestPhysicianVisit(String latestPhysicianVisit) {
+		this.latestPhysicianVisit = latestPhysicianVisit;
+	}
+
+	public void setPhysicianVisits(ArrayList<PhysicianVisit> physicianVisits) {
+		this.physicianVisits = physicianVisits;
+	}
+
+	public void setInjuryProgressNotes(ArrayList<InjuryProgress> injuryProgressNotes) {
+		this.injuryProgressNotes = injuryProgressNotes;
+	}
+
 	public Injury(int bodyPartID,int injuryID, String injuryType, 
 			Date injuryDate, Boolean active, String season, ArrayList<SOAPNotes> soapNotes, 
 			ArrayList<PhysicianVisit> physicianVisits, ArrayList<InjuryProgress> injuryProgressNotes){

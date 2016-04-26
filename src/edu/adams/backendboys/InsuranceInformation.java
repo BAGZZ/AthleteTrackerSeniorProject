@@ -31,8 +31,7 @@ public class InsuranceInformation {
 		this.coPay=coPay;
 		this.referral=referral;
 		this.primaryPhysician=primaryPhysician;
-		this.physicianPhone=physicianPhone;
-		
+		this.physicianPhone=physicianPhone;	
 	}
 	
 	@Override
