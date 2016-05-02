@@ -71,7 +71,9 @@ public class CreateAthleteDatabase {
                   " COPAY      INT8    NOT NULL, " +
                   " REFERRAL      BOOLEAN    NOT NULL, " +
                   " PRIMARYPHYSICIAN      CHAR(128)    NOT NULL, " +
-                  " PHYSICIANPHONE     CHAR(16)    NOT NULL)"; 
+                  " PHYSICIANPHONE     CHAR(16)    NOT NULL, " +
+                  " INSURANCECARD1      CHAR(64)    NOT NULL, " +
+                  " INSURANCECARD2      CHAR(64)    NOT NULL)";
 	      stmt.executeUpdate(sql);
 	      
 	      sql = "CREATE TABLE BODYPART" +

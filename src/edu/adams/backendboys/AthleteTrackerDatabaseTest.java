@@ -11,7 +11,7 @@ public class AthleteTrackerDatabaseTest extends AthleteTrackerDatabase {
 	private ArrayList<PhysicianVisit> visits = new ArrayList<PhysicianVisit>();
 	private EmergencyContact contact = new EmergencyContact("Dad", "1-800-555-0101", "Mommy?", "1-900-HO BAGZ");
 	@SuppressWarnings("deprecation")
-	private InsuranceInformation insuranceInfo = new InsuranceInformation("987654321", "InsuranceCo", "1-800-555-4321", "17", "1234", "123 Bagby Ave, Zach, Colorado, 11111", new Date(1994, 12, 5), new Date(2014, 12, 5), true,"303-555-1111", "Mom", "1-900-HO BAGZ", "123 Bagby Ave, Zach, Colorado, 11111", 10000, 1, 100000, true, "Dr. Munchkin Voice", "1-800-Lollipop Guild");
+	private InsuranceInformation insuranceInfo = new InsuranceInformation("987654321", "InsuranceCo", "1-800-555-4321", "17", "1234", "123 Bagby Ave, Zach, Colorado, 11111", new Date(1994, 12, 5), new Date(2014, 12, 5), true,"303-555-1111", "Mom", "1-900-HO BAGZ", "123 Bagby Ave, Zach, Colorado, 11111", 10000, 1, 100000, true, "Dr. Munchkin Voice", "1-800-Lollipop Guild","","");
 	private SOAPNotes soapNote = new SOAPNotes("subjective", "objective", "analysis", "plan", new Date(System.currentTimeMillis()));
 	private InjuryProgress progress = new InjuryProgress(new Date(System.currentTimeMillis()), "This is a note");
 	private PhysicianVisit visit = new PhysicianVisit(new Date(System.currentTimeMillis()), "Doc says Hi");

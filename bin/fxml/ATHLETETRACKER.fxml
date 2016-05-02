@@ -158,15 +158,24 @@
                               <ListView fx:id="sportsAddAthleteListView" layoutX="524.0" layoutY="68.0" prefHeight="200.0" prefWidth="200.0" styleClass="addAthlete" />
                               <AnchorPane layoutX="20.0" layoutY="280.0" prefHeight="139.0" prefWidth="800.0">
                                  <children>
-                                    <Label fx:id="emergencyContactInformationAddAthleteLabel" layoutX="293.0" layoutY="14.0" styleClass="addAthlete" text="Emergency Contact Information">
+                                    <Label fx:id="emergencyContactInformationAddAthleteLabel" layoutX="203.0" layoutY="14.0" styleClass="addAthlete" text="Emergency Contact Information">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
                                     <TextField fx:id="ecNameAddAthleteText1" layoutX="100.0" layoutY="58.0" prefHeight="25.0" prefWidth="190.0" promptText="Emergency Contact One Name" styleClass="addAthlete" />
-                                    <TextField fx:id="ecPhoneAddAthleteText1" layoutX="320.0" layoutY="58.0" prefHeight="25.0" prefWidth="190.0" promptText="Emergency Contact One Phone" styleClass="addAthlete" />
+                                    <TextField fx:id="ecPhoneAddAthleteText1" layoutX="305.0" layoutY="58.0" prefHeight="25.0" prefWidth="190.0" promptText="Emergency Contact One Phone" styleClass="addAthlete" />
                                     <TextField fx:id="ecNameAddAthleteText2" layoutX="100.0" layoutY="100.0" prefHeight="25.0" prefWidth="190.0" promptText="Emergency Contact Two Name" styleClass="addAthlete" />
-                                    <TextField fx:id="ecPhoneAddAthleteText2" layoutX="320.0" layoutY="100.0" prefHeight="25.0" prefWidth="190.0" promptText="Emergency Contact Two Phone" styleClass="addAthlete" />
+                                    <TextField fx:id="ecPhoneAddAthleteText2" layoutX="305.0" layoutY="100.0" prefHeight="25.0" prefWidth="190.0" promptText="Emergency Contact Two Phone" styleClass="addAthlete" />
+                                    <Label fx:id="InsuranceCardAddAthleteLabel" layoutX="552.0" layoutY="14.0" styleClass="addAthlete" text="Insurance Card Path Front/Back">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="insuranceCardPathFrontPathText" layoutX="569.0" layoutY="57.0" prefHeight="25.0" prefWidth="190.0" promptText="Insurance Card Front Path" styleClass="addAthlete" />
+                                    <TextField fx:id="insuranceCardPathBackPathText" layoutX="569.0" layoutY="100.0" prefHeight="25.0" prefWidth="190.0" promptText="Insurance Card Back Path" styleClass="addAthlete" />
+                                    <Button fx:id="loadFrontPathButton" layoutX="524.0" layoutY="57.0" mnemonicParsing="false" onAction="#loadFrontPathButtonAction" prefHeight="25.0" prefWidth="45.0" text="Load" />
+                                    <Button fx:id="loadBackPathButton" layoutX="524.0" layoutY="100.0" mnemonicParsing="false" onAction="#loadBackPathButtonAction" prefHeight="25.0" prefWidth="45.0" text="Load" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="1.0" layoutY="419.0" prefHeight="422.0" prefWidth="800.0">

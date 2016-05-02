@@ -3,7 +3,8 @@ package edu.adams.backendboys;
 import java.sql.Date;
 
 public class InsuranceInformation {
-	private String studentSSN, companyName, insurancePhone, policyID, groupNummber, address, preCertPhone, policyHolder, policyHolderPhone, policyHolderAddress, primaryPhysician, physicianPhone;
+	private String studentSSN, companyName, insurancePhone, policyID, groupNummber, address, preCertPhone, 
+	policyHolder, policyHolderPhone, policyHolderAddress, primaryPhysician, physicianPhone, insuranceCardFrontPath, insuranceCardBackPath;
 	private Date policyEffective, policyExpiration;
 	private Boolean coverAthleticInjury, referral;
 	private int limit, deductible, coPay;
@@ -12,7 +13,12 @@ public class InsuranceInformation {
 	private InsuranceInformation(){
 		
 	}
-	public InsuranceInformation(String studentSSN, String companyName, String insurancePhone, String policyID, String groupNumber, String address, Date policyEffective, Date policyExpiration, Boolean coverAthleticInjury, String preCertPhone, String policyHolder, String policyHolderPhone, String policyHolderAddress, int limit, int deductible, int coPay, Boolean referral, String primaryPhysician, String physicianPhone){
+	
+	public InsuranceInformation(String studentSSN, String companyName, String insurancePhone, String policyID, 
+			String groupNumber, String address, Date policyEffective, Date policyExpiration, 
+			Boolean coverAthleticInjury, String preCertPhone, String policyHolder, String policyHolderPhone, 
+			String policyHolderAddress, int limit, int deductible, int coPay, Boolean referral, 
+			String primaryPhysician, String physicianPhone, String insuranceCardFrontPath, String insuranceCardBackPath){
 		this.studentSSN=studentSSN;
 		this.companyName=companyName;
 		this.insurancePhone=insurancePhone;
@@ -32,6 +38,8 @@ public class InsuranceInformation {
 		this.referral=referral;
 		this.primaryPhysician=primaryPhysician;
 		this.physicianPhone=physicianPhone;	
+		this.insuranceCardFrontPath=insuranceCardFrontPath;
+		this.insuranceCardBackPath=insuranceCardBackPath;
 	}
 	
 	@Override
@@ -110,6 +118,18 @@ public class InsuranceInformation {
 	}
 	public int getCoPay() {
 		return coPay;
+	}
+	public String getInsuranceCardFrontPath(){
+		return insuranceCardFrontPath;
+	}
+	public String getInsuranceCardBackPath(){
+		return insuranceCardBackPath;
+	}
+	public void setInsuranceCardFrontPath(String insuranceCardFrontPath){
+		this.insuranceCardFrontPath = insuranceCardFrontPath;
+	}
+	public void setInsuranceCardBackPath(String insuranceCardBackPath){
+		this.insuranceCardBackPath = insuranceCardBackPath;
 	}
 	public void setStudentSSN(String studentSSN) {
 		this.studentSSN = studentSSN;

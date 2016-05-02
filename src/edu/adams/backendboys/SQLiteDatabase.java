@@ -137,7 +137,6 @@ public class SQLiteDatabase extends Database {
 				connectionToDatabase.commit();
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
 				disconnect();
@@ -165,7 +164,6 @@ public class SQLiteDatabase extends Database {
 				connectionToDatabase.commit();
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
 				
@@ -194,7 +192,6 @@ public class SQLiteDatabase extends Database {
 				try {
 					Thread.sleep( (long)(Math.random()*SQLiteDatabase.MAXWAIT) );
 				} catch (InterruptedException interupt) {
-					// TODO Auto-generated catch block
 					interupt.printStackTrace();
 				}
 			}
@@ -213,7 +210,6 @@ public class SQLiteDatabase extends Database {
 				statement.close();
 				connectionToDatabase.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			connectionToDatabase=null;

@@ -169,6 +169,8 @@
             <Button fx:id="insuranceInformationCancelButton" layoutX="712.0" layoutY="48.0" mnemonicParsing="false" onAction="#insuranceInformationCancelButtonAction" prefHeight="25.0" prefWidth="76.0" text="Cancel" visible="false" />
             <TextField fx:id="athleteMiddleInitialInsuranceInformationLabel1" editable="false" layoutX="106.0" layoutY="85.0" prefHeight="25.0" prefWidth="23.0" styleClass="displayInsurance" />
             <TextField fx:id="athleteLastNameInsuranceInformationLabel1" editable="false" layoutX="137.0" layoutY="85.0" prefHeight="25.0" prefWidth="101.0" styleClass="displayInsurance" />
+            <Button fx:id="insuranceInformationCardFrontButton" layoutX="366.0" layoutY="543.0" mnemonicParsing="false" onAction="#insuranceInformationCardFrontButtonAction" prefHeight="25.0" prefWidth="131.0" text="Insurance Card Front" />
+            <Button fx:id="insuranceInformationCardBackButton" layoutX="543.0" layoutY="543.0" mnemonicParsing="false" onAction="#insuranceInformationCardBackButtonAction" prefHeight="25.0" prefWidth="137.0" text="Insurance Card Back" />
          </children>
       </AnchorPane>
    </children>

@@ -45,14 +45,14 @@ public class JavaFXPixel extends Application {
  
     public static void main(String[] args) {
         
-//    	if (Desktop.isDesktopSupported()) {
-//    	    try {
-//    	        File myFile = new File("C:/Users/ZBagby/Documents/BAGBY_ZACHARY_RESUME.PDF");
-//    	        Desktop.getDesktop().open(myFile);
-//    	    } catch (IOException ex) {
-//    	        // no application registered for PDFs
-//    	    }
-//    	}
+    	if (Desktop.isDesktopSupported()) {
+    	    try {
+    	        File myFile = new File("C:/Users/ZBagby/Documents/BAGBY_ZACHARY_RESUME.PDF");
+    	        Desktop.getDesktop().open(myFile);
+    	    } catch (IOException ex) {
+    	        // no application registered for PDFs
+    	    }
+    	}
     	launch(args);
     }
      

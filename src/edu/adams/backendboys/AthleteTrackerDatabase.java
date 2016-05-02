@@ -33,6 +33,14 @@ public class AthleteTrackerDatabase {
 											Date start, Date end, String StudentID, String Season,
 											String gender){
 		ArrayList<Athlete> athletes = new ArrayList<Athlete>();
+		//add spaces before capital letters
+		String Sport = sport.replaceAll("(\\p{Ll})(\\p{Lu})","$1 $2");
+		sport = Sport;
+		String InjuryType = injuryType.replaceAll("(\\p{Ll})(\\p{Lu})","$1 $2");
+		injuryType = InjuryType;
+		String BodyPart = bodyPart.replaceAll("(\\p{Ll})(\\p{Lu})","$1 $2");
+		bodyPart = BodyPart;
+		System.out.println(Sport);
 		//GET LIST OF ATHLETES FROM ATHLETES TABLE THAT MEET ABOVE REQUIREMENTS
 		ArrayList<Integer> studentIDs = parseAthleteInfoAndSearch(firstName, middleInitial, lastName, StudentID, gender);
 		
@@ -46,7 +54,6 @@ public class AthleteTrackerDatabase {
 				studentIDs.retainAll(getAthleteIDsFromSportID(sportID));
 			}
 		}
-
 		//Gets a List of Student IDs that meet the Injury Info passed in. If everything is set to default, then it returns an empty list and we don't limit the results by what is in the Injury Table
 		 int bodyPartID=getBodyPartID(bodyPart);
 		 ArrayList<Integer> injuryStudentIDs =parseInjuryInfoAndSearch(injuryType, bodyPartID,activeInjuries, start, end, Season);
@@ -332,9 +339,11 @@ public class AthleteTrackerDatabase {
 		//TODO numbers were off
 		String primaryPhysician = tempStorage.get(0).get(18);
 		String physicianPhone = tempStorage.get(0).get(19);
+		String insuranceCardFrontPath = tempStorage.get(0).get(20);
+		String insuranceCardBackPath = tempStorage.get(0).get(21);
 		
 		
-		InsuranceInformation insuranceInfo = new InsuranceInformation(studentSSN, companyName, insurancePhone, policyID, groupNumber, address, policyEffective, policyExpiration, coverAthleticInjury, preCertPhone, policyHolder, policyHolderPhone, policyHolderAddress, limit, deductible, coPay, referral, primaryPhysician, physicianPhone);
+		InsuranceInformation insuranceInfo = new InsuranceInformation(studentSSN, companyName, insurancePhone, policyID, groupNumber, address, policyEffective, policyExpiration, coverAthleticInjury, preCertPhone, policyHolder, policyHolderPhone, policyHolderAddress, limit, deductible, coPay, referral, primaryPhysician, physicianPhone, insuranceCardFrontPath, insuranceCardBackPath);
 		
 		
 		
@@ -488,10 +497,28 @@ public class AthleteTrackerDatabase {
 		}
 		return new ArrayList<Integer>(ids);
 	}
-	//TODO SEASON
+
 	private ArrayList<Integer> parseInjuryInfoAndSearch(String injuryType, int bodyPartID,String activeInjuries,
 														Date start, Date end, String Season){
 		ArrayList<Integer> ids = new ArrayList<Integer>();
+
+		System.out.println(bodyPartID);
+		if(Season.startsWith("Fall")){
+			Season = new StringBuilder(Season).insert(4, " ").toString();
+					System.out.println(Season);
+		}
+		if(Season.startsWith("Winter")){
+			Season = new StringBuilder(Season).insert(6, " ").toString();
+					System.out.println(Season);
+		}
+		if(Season.startsWith("Spring")){
+			Season = new StringBuilder(Season).insert(6, " ").toString();
+					System.out.println(Season);
+		}
+		if(Season.startsWith("Summer")){
+			Season = new StringBuilder(Season).insert(6, " ").toString();
+					System.out.println(Season);
+		}
 		String dateString="";
 		String injuryTypeID="";
 		java.sql.Date startSQL= null;
@@ -517,12 +544,12 @@ public class AthleteTrackerDatabase {
 			endSQL= new java.sql.Date(end.getTime());
 			dateString="INJURYDATE BETWEEN '"+startSQL.toString()+"' AND '"+endSQL.toString()+"'";
 		}
-		if(Season.equalsIgnoreCase("")){
+		if(Season.equalsIgnoreCase("") || Season.equalsIgnoreCase("any")){
 			Season="";
 		}else{
 			Season="SEASON='"+Season+"'";
 		}
-		
+		System.out.println(injuryTypeID);
 		if(injuryTypeID.equalsIgnoreCase("") && active.equalsIgnoreCase("") && dateString.equalsIgnoreCase("") && Season.equalsIgnoreCase("")){
 			return null;
 		}else{
@@ -545,6 +572,7 @@ public class AthleteTrackerDatabase {
 		String[] seasons = {"Fall","Winter","Spring","Summer"};
 		//int[] years = {Calendar.getInstance().get(Calendar.YEAR),Calendar.getInstance().get(Calendar.YEAR)-1, Calendar.getInstance().get(Calendar.YEAR)-2 };
 		int[] years = {2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023};
+		output.add("any");
 		for(int year : years){
 			for(String season : seasons){
 				output.add(season+" "+year);
@@ -609,12 +637,12 @@ public class AthleteTrackerDatabase {
 			}
 			String[] insuranceData={"(STUDENTID, STUDENTSSN, COMPANYNAME, INSURANCEPHONE, POLICYID, GROUPNUMBER, ADDRESS, POLICYEFFECTIVE,"
 					+ "POLICYEXPIRATION, COVERATHLETICINJURY, PRECERTPHONE, POLICYHOLDER, POLICYHOLDERPHONE, POLICYHOLDERADDRESS, POLICYLIMIT,"
-					+ "DEDUCTIBLE, COPAY, REFERRAL, PRIMARYPHYSICIAN, PHYSICIANPHONE )",player.getStudentID()+",","'"+encryptedSSN+"',","'"+player.getInsuranceInfo().getCompanyName()+"',","'"+player.getInsuranceInfo().getInsurancePhone()+"',",
+					+ "DEDUCTIBLE, COPAY, REFERRAL, PRIMARYPHYSICIAN, PHYSICIANPHONE, INSURANCECARD1, INSURANCECARD2 )",player.getStudentID()+",","'"+encryptedSSN+"',","'"+player.getInsuranceInfo().getCompanyName()+"',","'"+player.getInsuranceInfo().getInsurancePhone()+"',",
 					"'"+player.getInsuranceInfo().getPolicyID()+"',","'"+player.getInsuranceInfo().getGroupNummber()+"',","'"+player.getInsuranceInfo().getAddress()+"',","'"+player.getInsuranceInfo().getPolicyEffective()+"',",
 					"'"+player.getInsuranceInfo().getPolicyExpiration()+"',",coverAthleteString+",","'"+player.getInsuranceInfo().getPreCertPhone()+"',","'"+player.getInsuranceInfo().getPolicyHolder()+"',",
 					"'"+player.getInsuranceInfo().getPolicyHolderPhone()+"',","'"+player.getInsuranceInfo().getPolicyHolderAddress()+"',",player.getInsuranceInfo().getLimit()+",",
 					player.getInsuranceInfo().getDeductible()+",",player.getInsuranceInfo().getCoPay()+",",referralString+",","'"+player.getInsuranceInfo().getPrimaryPhysician()+"',",
-					"'"+player.getInsuranceInfo().getPhysicianPhone()+"'"};
+					"'"+player.getInsuranceInfo().getPhysicianPhone()+"',","'"+player.getInsuranceInfo().getInsuranceCardFrontPath()+"',","'"+player.getInsuranceInfo().getInsuranceCardBackPath()+"'"};
 			output = output && database.insert("INSURANCEINFORMATION", insuranceData);
 		}
 		return output;

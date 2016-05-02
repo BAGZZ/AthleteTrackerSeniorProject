@@ -1,5 +1,8 @@
 package mainclient;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,7 +27,9 @@ public class InsuranceWindowController implements Initializable {
 	private Athlete currentAthlete = null;
 	@FXML
 	private Button insuranceInformationEditButton,
-		insuranceInformationCancelButton;
+		insuranceInformationCancelButton,
+		insuranceInformationCardFrontButton,
+		insuranceInformationCardBackButton;
 	@FXML
 	private TextField athleteFirstNameInsuranceInformationLabel1,
 		athleteMiddleInitialInsuranceInformationLabel1,
@@ -481,5 +486,37 @@ public class InsuranceWindowController implements Initializable {
 		referralInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
 		primaryPhysicianInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
 		physicianPhoneInsuranceInformationLabel1.getStyleClass().add("displayInsurance");
+	}
+	/**
+	 * Gets path of current athletes insurance card front and uses user's pc's default application for opening PDFs
+	 * @param ae
+	 */
+	public void insuranceInformationCardFrontButtonAction(ActionEvent ae){
+		ae.consume();
+		System.out.println("Front= "+currentAthlete.getInsuranceInfo().getInsuranceCardFrontPath());
+    	if (Desktop.isDesktopSupported()) {
+    	    try {
+    	        File myFile = new File(currentAthlete.getInsuranceInfo().getInsuranceCardFrontPath());
+    	        Desktop.getDesktop().open(myFile);
+    	    } catch (IOException ex) {
+    	        // no application registered for PDFs
+    	    }
+    	}
+	}
+	/**
+	 * Gets path of current athletes insurance card back and uses user's pc's default application for opening PDFs
+	 * @param ae
+	 */
+	public void insuranceInformationCardBackButtonAction(ActionEvent ae){
+		ae.consume();
+		System.out.println("Back= "+ currentAthlete.getInsuranceInfo().getInsuranceCardBackPath());
+    	if (Desktop.isDesktopSupported()) {
+    	    try {
+    	        File myFile2 = new File(currentAthlete.getInsuranceInfo().getInsuranceCardBackPath());
+    	        Desktop.getDesktop().open(myFile2);
+    	    } catch (IOException ex) {
+    	        // no application registered for PDFs
+    	    }
+    	}
 	}
 }

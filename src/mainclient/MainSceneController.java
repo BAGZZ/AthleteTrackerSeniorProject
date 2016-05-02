@@ -1,5 +1,6 @@
 package mainclient;
 
+import java.io.File;
 import java.net.URL;
 import java.util.Date;
 import java.time.Instant;
@@ -34,6 +35,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
 /**
@@ -93,6 +95,8 @@ public class MainSceneController implements Initializable {
 	@FXML
 	private Button editAthleteButton, 
 		editAthleteCancelButton,
+		loadFrontPathButton,
+		loadBackPathButton,
 		addAthleteButton, 
 		refreshButton;
 	
@@ -134,6 +138,8 @@ public class MainSceneController implements Initializable {
 		ecPhoneAddAthleteText1,
 		ecNameAddAthleteText2,
 		ecPhoneAddAthleteText2,
+		insuranceCardPathFrontPathText,
+		insuranceCardPathBackPathText,
 		insuranceNameAddAthleteText,
 		insurancePhoneAddAthleteText,
 		IDAddAthleteText,
@@ -597,6 +603,8 @@ public class MainSceneController implements Initializable {
 			else{
 				date2=new Date();
 			}
+			String l = seasonComboBox.getValue();
+			System.out.println(l);
 			searchTableView.getItems().setAll(atdb.searchDatabase(atdb.sanitize(firstNameSearchText.getText()),
 					atdb.sanitize(middleInitialSearchText.getText()), atdb.sanitize(lastNameSearchText.getText()),
 					atdb.sanitize(sportComboBox.getValue()), atdb.sanitize(bodyPartComboBox.getValue()), 
@@ -763,6 +771,28 @@ public class MainSceneController implements Initializable {
 			new InsuranceWindow(currentAthlete);
 		}
 	}	
+	/**
+	 * Pulls up file chooser and saves path of selected file to textfield next to it.
+	 * @param ae
+	 */
+	public void loadFrontPathButtonAction(ActionEvent ae){
+		ae.consume();
+		FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(null);
+        String frontPath = file.getAbsolutePath();  
+        insuranceCardPathFrontPathText.setText(frontPath);
+	}
+	/**
+	 * Pulls up file chooser and saves path of selected file to textfield next to it.
+	 * @param ae
+	 */
+	public void loadBackPathButtonAction(ActionEvent ae){
+		ae.consume();
+		FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(null);
+        String backPath = file.getAbsolutePath();
+        insuranceCardPathBackPathText.setText(backPath);
+	}
 	
 	/**
 	 * When add athlete button is pressed a new athlete is created using all of the filled in information and added to
@@ -818,7 +848,8 @@ public class MainSceneController implements Initializable {
 			policyHolderAddAthleteText.getText(),policyHolderPhoneAddAthleteText.getText(), policyHolderAddressAddAthleteText.getText(),
 			Integer.parseInt(limitAddAthleteText.getText()), Integer.parseInt(deductableAddAthleteText.getText()),
 			Integer.parseInt(coPayAddAthleteText.getText()), referral,
-			primaryPhysicianAddAthleteText.getText(), physicianPhoneAddAthleteText.getText());
+			primaryPhysicianAddAthleteText.getText(), physicianPhoneAddAthleteText.getText(), insuranceCardPathFrontPathText.getText(),
+			insuranceCardPathBackPathText.getText());
 		
 		Athlete athlete = new Athlete(firstAddAthleteText.getText(), miAddAthleteText.getText().charAt(0), 
 			lastAddAthleteText.getText(),new java.sql.Date(datedob.getTime()), cellAddAthleteText.getText(), 
