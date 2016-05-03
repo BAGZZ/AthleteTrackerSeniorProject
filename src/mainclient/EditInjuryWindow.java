@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import edu.adams.backendboys.Athlete;
@@ -31,6 +32,7 @@ public class EditInjuryWindow extends Window {
 			stg.setScene(scene);
 			stg.setTitle("Edit Injury");
 			stg.setResizable(false);
+			stg.getIcons().add(new Image(getClass().getResourceAsStream("asuIcon.png")));
 			EditInjuryWindowController controller = fxmlLoader.<EditInjuryWindowController>getController();
 			controller.setInformation(currentAthlete);
 			

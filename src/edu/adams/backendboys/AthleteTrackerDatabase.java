@@ -239,7 +239,6 @@ public class AthleteTrackerDatabase {
 			injuryID = Integer.parseInt(injury.get(0));
 			injuryType = getInjuryType(Integer.parseInt(injury.get(2)));
 			injuryDate=java.sql.Date.valueOf(injury.get(3));
-			//TODO FIX 
 			bodyPartID = getBodyPartIDByInjuryType(injuryType);
 			activeInjury=true;
 			if(injury.get(4).contains("0")){
@@ -336,7 +335,6 @@ public class AthleteTrackerDatabase {
 		if(tempStorage.get(0).get(17).contains("0")){
 			referral = false;
 		}
-		//TODO numbers were off
 		String primaryPhysician = tempStorage.get(0).get(18);
 		String physicianPhone = tempStorage.get(0).get(19);
 		String insuranceCardFrontPath = tempStorage.get(0).get(20);
@@ -487,7 +485,6 @@ public class AthleteTrackerDatabase {
 			data[4][0]="";
 		}
 				
-		//TODO  Ignore Case for name search
 		ArrayList<ArrayList<String>> temp = database.select("ATHLETE", data[0]);
 		for(int count=1; count<data.length; count++){
 			temp.retainAll(database.select("ATHLETE", data[count]));
@@ -526,7 +523,7 @@ public class AthleteTrackerDatabase {
 		if(injuryType.equalsIgnoreCase("") || injuryType.equalsIgnoreCase("Any")){
 			injuryTypeID="";
 		}else{
-			injuryTypeID="INJURYID='"+getInjuryTypeID(injuryType,bodyPartID)+"'";
+			injuryTypeID="INJURYTYPEID='"+getInjuryTypeID(injuryType,bodyPartID)+"'";
 		}
 		String active="";
 		if(activeInjuries.equalsIgnoreCase("Active")){
@@ -780,7 +777,7 @@ public class AthleteTrackerDatabase {
 		return database.update(table, insuranceData, searchData);
 
 	}
-	//TODO jeremiah
+	
 	public boolean editActiveInjury(Injury oldInjury, Injury newInjury){
 		String table = "INJURIES";
 		String[] searchData = {"INJURYID="+oldInjury.getInjuryID()};

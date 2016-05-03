@@ -6,6 +6,7 @@ import edu.adams.backendboys.Athlete;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 /**
@@ -31,6 +32,7 @@ public class InsuranceWindow extends Window {
 			stg.setScene(scene);
 			stg.setTitle("Athlete Insurance");
 			stg.setResizable(false);
+			stg.getIcons().add(new Image(getClass().getResourceAsStream("asuIcon.png")));
 			InsuranceWindowController controller = fxmlLoader.<InsuranceWindowController>getController();
 			controller.setAthlete(currentAthlete);
 			

@@ -181,6 +181,11 @@ public class EditInjuryWindowController implements Initializable {
 		editInjuryProgressNotesTableView.getItems().setAll(currentInjury.getInjuryProgressNotes());
 		editInjuryPhysicianNotesTableView.getItems().setAll(currentInjury.getPhysicianVisit());
 		
+		editInjurySNotesTextArea.setEditable(false);
+		editInjuryONotesTextArea.setEditable(false);
+		editInjuryANotesTextArea.setEditable(false);
+		editInjuryPNotesTextArea.setEditable(false);
+		
 	}
 	
 	/**
@@ -188,7 +193,6 @@ public class EditInjuryWindowController implements Initializable {
 	 * @param me action event 
 	 */
 	public void makeChangesButtonPressed(ActionEvent ae){
-		//TODO
 		System.out.println("make Changes button pressed");
 		Injury newInjury = new Injury(currentAthlete.getCurrentInjury().getBodyPartID(), currentAthlete.getCurrentInjury().getInjuryID(), 
 				currentAthlete.getCurrentInjury().getInjuryType(), currentAthlete.getCurrentInjury().getInjuryDate(),

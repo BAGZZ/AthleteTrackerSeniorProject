@@ -817,8 +817,13 @@ public class MainSceneController implements Initializable {
 		String sports="";
 		
 		ObservableList<String> selectedItems =  sportsAddAthleteListView.getSelectionModel().getSelectedItems();
+		ArrayList<String> sportCheck = new ArrayList<String>();
+		
 		for(int count=0;count<selectedItems.size()-1;count++){
-			sports+=selectedItems.get(count)+",";
+			if(!sportCheck.contains(selectedItems.get(count))){
+				sportCheck.add(selectedItems.get(count));
+				sports+=selectedItems.get(count)+",";
+			}
 		}
 		if(!selectedItems.isEmpty()){
 			sports+=selectedItems.get(selectedItems.size()-1);
@@ -862,7 +867,6 @@ public class MainSceneController implements Initializable {
 		alert.setTitle("Athlete Added");
 		alert.setHeaderText(null);
 		alert.setContentText("Athlete Added Successfully");
-
 		alert.showAndWait();
 		tabPane.getSelectionModel().select(searchTab);
 		

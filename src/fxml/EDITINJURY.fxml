@@ -25,7 +25,7 @@
                                                 <Font size="13.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="editInjuryInjuryDateLabel" layoutX="470.0" layoutY="25.0" styleClass="editInjury" text="Date" underline="true">
+                                          <Label fx:id="editInjuryInjuryDateLabel" layoutX="463.0" layoutY="26.0" styleClass="editInjury" text="Date-Year-Month-Day" underline="true">
                                              <font>
                                                 <Font size="13.0" />
                                              </font>
@@ -110,7 +110,7 @@
                                           </Label>
                                           <Button fx:id="makeChangesButton" layoutX="339.0" layoutY="621.0" mnemonicParsing="false" onAction="#makeChangesButtonPressed" prefHeight="33.0" prefWidth="100.0" text="Make Changes" />
                                           <CheckBox fx:id="editInjuryActiveInjuryCheckBox" layoutX="586.0" layoutY="45.0" mnemonicParsing="false" styleClass="editInjury" text="Active Injury" />
-                                          <Label fx:id="editInjuryInjuryDateLabel1" layoutX="470.0" layoutY="48.0" styleClass="editInjury" text="Date" />
+                                          <Label fx:id="editInjuryInjuryDateLabel1" layoutX="463.0" layoutY="48.0" styleClass="editInjury" text="Date" />
                                           <Label fx:id="editInjuryInjuryTypeLabel1" layoutX="339.0" layoutY="48.0" styleClass="editInjury" text="InjuryType" />
                                           <Label fx:id="editInjuryBodyPartLabel" layoutX="184.0" layoutY="24.0" styleClass="editInjury" text="Body Part" underline="true">
                                              <font>
