@@ -785,8 +785,14 @@ public class AthleteTrackerDatabase {
 		String table = "INJURIES";
 		String[] searchData = {"INJURYID="+oldInjury.getInjuryID()};
 		//String[] searchData = {"STUDENTID="+player.getStudentID()};
-
-		String[] newData={"INJURYID="+newInjury.getInjuryID()+",","ACTIVE="+newInjury.getActive()+"'"};
+		String active = newInjury.getActive().toString();
+		if(active.equalsIgnoreCase("true")){
+			active = "1";
+		}
+		if(active.equalsIgnoreCase("false")){
+			active = "0";
+		}
+		String[] newData={"INJURYID="+newInjury.getInjuryID()+",","ACTIVE='"+active+"'"};
 
 		return database.update(table, newData, searchData);
 

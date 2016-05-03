@@ -76,6 +76,8 @@ public class SQLiteDatabase extends Database {
 					sql+=" WHERE ";
 					for(String pair : data){
 						sql+=pair;
+						System.out.println(pair);
+						System.out.println(sql);
 					}
 				}else{
 					
@@ -130,6 +132,8 @@ public class SQLiteDatabase extends Database {
 				sql+=" WHERE ";
 				for(String pair : searchData){
 					sql+=pair;
+					System.out.println(pair);
+					System.out.println(sql);
 				}
 				statement.executeUpdate(sql);
 				connectionToDatabase.commit();
