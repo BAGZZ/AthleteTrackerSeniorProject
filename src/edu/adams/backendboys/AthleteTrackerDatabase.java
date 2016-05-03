@@ -438,7 +438,7 @@ public class AthleteTrackerDatabase {
 		if(firstName.equalsIgnoreCase("")){
 			firstName="IS NOT NULL";
 		}else{
-			firstName="=UPPER('"+firstName+"')";
+			firstName="LIKE UPPER('"+firstName+"%')";
 		}
 		
 		if(middleInitial.equalsIgnoreCase("")){
@@ -450,7 +450,7 @@ public class AthleteTrackerDatabase {
 		if(lastName.equalsIgnoreCase("")){
 			lastName="IS NOT NULL";
 		}else{
-			lastName="=UPPER('"+lastName+"')";
+			lastName="LIKE UPPER('"+lastName+"%')";
 		}
 		
 		if(studentID.equalsIgnoreCase("")){
