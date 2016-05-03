@@ -438,7 +438,7 @@ public class AthleteTrackerDatabase {
 		if(firstName.equalsIgnoreCase("")){
 			firstName="IS NOT NULL";
 		}else{
-			firstName="='"+firstName+"'";
+			firstName="=UPPER('"+firstName+"')";
 		}
 		
 		if(middleInitial.equalsIgnoreCase("")){
@@ -450,7 +450,7 @@ public class AthleteTrackerDatabase {
 		if(lastName.equalsIgnoreCase("")){
 			lastName="IS NOT NULL";
 		}else{
-			lastName="='"+lastName+"'";
+			lastName="=UPPER('"+lastName+"')";
 		}
 		
 		if(studentID.equalsIgnoreCase("")){
@@ -465,7 +465,7 @@ public class AthleteTrackerDatabase {
 			gender="='"+gender.toUpperCase().charAt(0)+"'";
 		}
 		
-		String[][] data ={{"FIRSTNAME"+firstName}, {"MIDDLEINITIAL"+middleInitial}, {"LASTNAME"+lastName}, {"STUDENTID"+studentID}, {"GENDER"+gender}};
+		String[][] data ={{"UPPER(FIRSTNAME)"+firstName}, {"MIDDLEINITIAL"+middleInitial}, {"UPPER(LASTNAME)"+lastName}, {"STUDENTID"+studentID}, {"GENDER"+gender}};
 		
 		if(firstName.equalsIgnoreCase("IS NOT NULL")){
 			data[0][0]="";
@@ -501,7 +501,7 @@ public class AthleteTrackerDatabase {
 	private ArrayList<Integer> parseInjuryInfoAndSearch(String injuryType, int bodyPartID,String activeInjuries,
 														Date start, Date end, String Season){
 		ArrayList<Integer> ids = new ArrayList<Integer>();
-
+		//add spaces between season and year
 		System.out.println(bodyPartID);
 		if(Season.startsWith("Fall")){
 			Season = new StringBuilder(Season).insert(4, " ").toString();

@@ -84,13 +84,13 @@
                               <Button fx:id="editAthleteButton" layoutX="300.0" layoutY="14.0" mnemonicParsing="false" onAction="#editAthleteButtonAction" prefHeight="25.0" prefWidth="95.0" text="Edit Athlete" />
                               <Button fx:id="editAthleteCancelButton" layoutX="300.0" layoutY="49.0" mnemonicParsing="false" onAction="#editAthleteCancelButtonAction" prefHeight="25.0" prefWidth="95.0" text="Cancel" visible="false" />
                               <TextField fx:id="phoneContactText" editable="false" layoutX="170.0" layoutY="53.0" prefHeight="25.0" prefWidth="95.0" promptText="555-555-5555" styleClass="selectedAthlete" />
-                              <TextField fx:id="ecContactText1" editable="false" layoutX="170.0" layoutY="93.0" prefHeight="25.0" prefWidth="150.0" promptText="Name" styleClass="selectedAthlete" />
-                              <TextField fx:id="ecPhoneContactText1" editable="false" layoutX="300.0" layoutY="93.0" prefHeight="25.0" prefWidth="95.0" promptText="555-555-5555" styleClass="selectedAthlete" />
-                              <TextField fx:id="ecContactText2" editable="false" layoutX="170.0" layoutY="133.0" prefHeight="25.0" prefWidth="150.0" promptText="Name" styleClass="selectedAthlete" />
-                              <TextField fx:id="ecPhoneContactText2" editable="false" layoutX="300.0" layoutY="133.0" prefHeight="25.0" prefWidth="95.0" promptText="555-555-5555" styleClass="selectedAthlete" />
+                              <TextField fx:id="ecContactText1" alignment="CENTER" editable="false" layoutX="170.0" layoutY="93.0" prefHeight="25.0" prefWidth="158.0" promptText="Name" styleClass="selectedAthlete" />
+                              <TextField fx:id="ecPhoneContactText1" editable="false" layoutX="330.0" layoutY="93.0" prefHeight="25.0" prefWidth="95.0" promptText="555-555-5555" styleClass="selectedAthlete" />
+                              <TextField fx:id="ecContactText2" alignment="CENTER" editable="false" layoutX="170.0" layoutY="133.0" prefHeight="25.0" prefWidth="158.0" promptText="Name" styleClass="selectedAthlete" />
+                              <TextField fx:id="ecPhoneContactText2" editable="false" layoutX="330.0" layoutY="133.0" prefHeight="25.0" prefWidth="95.0" promptText="555-555-5555" styleClass="selectedAthlete" />
                               <Label fx:id="phoneNumberContactLabel" layoutX="29.0" layoutY="57.0" styleClass="selectedAthlete" text="Athlete Phone Number:" />
-                              <Label fx:id="ecContactLabel1" layoutX="24.0" layoutY="97.0" styleClass="selectedAthlete" text="Emergency Contact One:" />
-                              <Label fx:id="ecContactLabel2" layoutX="24.0" layoutY="137.0" styleClass="selectedAthlete" text="Emergency Contact Two:" />
+                              <Label fx:id="ecContactLabel1" layoutX="13.0" layoutY="97.0" styleClass="selectedAthlete" text="Emergency Contact/Relation:" />
+                              <Label fx:id="ecContactLabel2" layoutX="13.0" layoutY="137.0" styleClass="selectedAthlete" text="Emergency Contact/Relation:" />
                               <Label fx:id="editAthleteError" layoutX="-34.0" layoutY="31.0" prefHeight="17.0" prefWidth="319.0" styleClass="errorMessage">
                                  <font>
                                     <Font size="10.0" />
@@ -163,9 +163,9 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="ecNameAddAthleteText1" layoutX="100.0" layoutY="58.0" prefHeight="25.0" prefWidth="190.0" promptText="Emergency Contact One Name" styleClass="addAthlete" />
+                                    <TextField fx:id="ecNameAddAthleteText1" layoutX="44.0" layoutY="58.0" prefHeight="25.0" prefWidth="246.0" promptText="Emergency Contact One Name/Relation" styleClass="addAthlete" />
                                     <TextField fx:id="ecPhoneAddAthleteText1" layoutX="305.0" layoutY="58.0" prefHeight="25.0" prefWidth="190.0" promptText="Emergency Contact One Phone" styleClass="addAthlete" />
-                                    <TextField fx:id="ecNameAddAthleteText2" layoutX="100.0" layoutY="100.0" prefHeight="25.0" prefWidth="190.0" promptText="Emergency Contact Two Name" styleClass="addAthlete" />
+                                    <TextField fx:id="ecNameAddAthleteText2" layoutX="44.0" layoutY="100.0" prefHeight="25.0" prefWidth="246.0" promptText="Emergency Contact Two Name/Relation" styleClass="addAthlete" />
                                     <TextField fx:id="ecPhoneAddAthleteText2" layoutX="305.0" layoutY="100.0" prefHeight="25.0" prefWidth="190.0" promptText="Emergency Contact Two Phone" styleClass="addAthlete" />
                                     <Label fx:id="InsuranceCardAddAthleteLabel" layoutX="552.0" layoutY="14.0" styleClass="addAthlete" text="Insurance Card Path Front/Back">
                                        <font>
@@ -175,7 +175,7 @@
                                     <TextField fx:id="insuranceCardPathFrontPathText" layoutX="569.0" layoutY="57.0" prefHeight="25.0" prefWidth="190.0" promptText="Insurance Card Front Path" styleClass="addAthlete" />
                                     <TextField fx:id="insuranceCardPathBackPathText" layoutX="569.0" layoutY="100.0" prefHeight="25.0" prefWidth="190.0" promptText="Insurance Card Back Path" styleClass="addAthlete" />
                                     <Button fx:id="loadFrontPathButton" layoutX="524.0" layoutY="57.0" mnemonicParsing="false" onAction="#loadFrontPathButtonAction" prefHeight="25.0" prefWidth="45.0" text="Load" />
-                                    <Button fx:id="loadBackPathButton" layoutX="524.0" layoutY="100.0" mnemonicParsing="false" onAction="#loadBackPathButtonAction" prefHeight="25.0" prefWidth="45.0" text="Load" />
+                                    <Button fx:id="loadBackPathButton" layoutX="524.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="Load" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="1.0" layoutY="419.0" prefHeight="422.0" prefWidth="800.0">

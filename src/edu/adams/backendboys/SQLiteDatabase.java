@@ -76,8 +76,6 @@ public class SQLiteDatabase extends Database {
 					sql+=" WHERE ";
 					for(String pair : data){
 						sql+=pair;
-						//TODO does this help with case sensitivity?
-						//sql+="UPPER("+pair+")";
 					}
 				}else{
 					
